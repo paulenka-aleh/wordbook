@@ -1,0 +1,33 @@
+.form-sign {
+	max-width: 480px;
+	padding: 15px;
+	margin: 0 auto;
+}
+
+.form-sign .form-sign-heading, .form-sign {
+	margin-bottom: 10px;
+}
+
+.form-sign {
+	font-weight: normal;
+}
+
+.form-sign .form-control {
+	position: relative;
+	font-size: 16px;
+	height: auto;
+	padding: 10px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.form-sign .form-control:focus {
+	z-index: 2;
+}
+
+.form-sign input[type="text"], .form-sign input[type="password"] {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}

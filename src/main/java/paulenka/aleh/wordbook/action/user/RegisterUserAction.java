@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import paulenka.aleh.wordbook.constant.SessionAttributes;
 import paulenka.aleh.wordbook.dao.UserDao;
 import paulenka.aleh.wordbook.entity.Registration;
 import paulenka.aleh.wordbook.entity.User;
@@ -14,8 +15,6 @@ import com.opensymphony.xwork2.ActionSupport;
 public class RegisterUserAction extends ActionSupport implements SessionAware {
 
 	private static final long serialVersionUID = 1L;
-
-	private final static String SUCCESS = "success";
 
 	private Map<String, Object> session;
 
@@ -49,12 +48,15 @@ public class RegisterUserAction extends ActionSupport implements SessionAware {
 
 	@Override
 	public String execute() {
+		if (getSession().containsKey(SessionAttributes.USER)) {
+			return SUCCESS;
+		}
 		if (getRegistration() == null) {
 			return INPUT;
 		}
 		try {
 			User user = getUserDao().register(getRegistration());
-			getSession().put("user", user);
+			getSession().put(SessionAttributes.USER, user);
 			return SUCCESS;
 		} catch (SQLException e) {
 			e.printStackTrace();

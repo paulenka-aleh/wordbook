@@ -5,67 +5,68 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import paulenka.aleh.wordbook.action.RedirectBackAction;
+import paulenka.aleh.wordbook.constant.SessionAttributes;
 import paulenka.aleh.wordbook.dao.UserDao;
 import paulenka.aleh.wordbook.entity.Credentials;
 import paulenka.aleh.wordbook.entity.User;
 
-import com.opensymphony.xwork2.ActionSupport;
+public class LoginUserAction extends RedirectBackAction implements SessionAware {
 
-public class LoginUserAction extends ActionSupport implements SessionAware {
+	private static final long serialVersionUID = 1L;
 
-    private static final long serialVersionUID = 1L;
+	private Map<String, Object> session;
 
-    private final static String SUCCESS = "success";
+	private UserDao userDao;
 
-    private Map<String, Object> session;
+	private Credentials credentials;
 
-    private UserDao userDao;
+	protected UserDao getUserDao() {
+		if (userDao == null) {
+			userDao = new UserDao();
+		}
+		return userDao;
+	}
 
-    private Credentials credentials;
+	public Map<String, Object> getSession() {
+		return session;
+	}
 
-    protected UserDao getUserDao() {
-        if (userDao == null) {
-            userDao = new UserDao();
-        }
-        return userDao;
-    }
+	@Override
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
+	}
 
-    public Map<String, Object> getSession() {
-        return session;
-    }
+	public Credentials getCredentials() {
+		return credentials;
+	}
 
-    @Override
-    public void setSession(Map<String, Object> session) {
-        this.session = session;
-    }
+	public void setCredentials(Credentials credentials) {
+		this.credentials = credentials;
+	}
 
-    public Credentials getCredentials() {
-        return credentials;
-    }
-
-    public void setCredentials(Credentials credentials) {
-        this.credentials = credentials;
-    }
-
-    @Override
-    public String execute() {
-        if (getCredentials() == null || (getCredentials().getUsername() == null || getCredentials().getUsername().isEmpty()) &&
-                (getCredentials().getPassword() == null || getCredentials().getPassword().isEmpty())) {
-            return INPUT;
-        }
-        try {
-            User user = getUserDao().login(getCredentials());
-            if (user != null) {
-                getSession().put("user", user);
-                return SUCCESS;
-            } else {
-                addActionError(getText("sign-in-form.error"));
-                return INPUT;
-            }
-        } catch (SQLException ex) {
-            // TODO: Redirect to 500 page
-            ex.printStackTrace();
-            return INPUT;
-        }
-    }
+	@Override
+	public String execute() {
+		if (getSession().containsKey(SessionAttributes.USER)) {
+			return SUCCESS;
+		}
+		if (getCredentials() == null || (getCredentials().getUsername() == null || getCredentials().getUsername().isEmpty()) &&
+				(getCredentials().getPassword() == null || getCredentials().getPassword().isEmpty())) {
+			return INPUT;
+		}
+		try {
+			User user = getUserDao().login(getCredentials());
+			if (user != null) {
+				getSession().put(SessionAttributes.USER, user);
+				return SUCCESS;
+			} else {
+				addActionError(getText("sign-in-form.error"));
+				return INPUT;
+			}
+		} catch (SQLException ex) {
+			// TODO: Redirect to 500 page
+			ex.printStackTrace();
+			return INPUT;
+		}
+	}
 }

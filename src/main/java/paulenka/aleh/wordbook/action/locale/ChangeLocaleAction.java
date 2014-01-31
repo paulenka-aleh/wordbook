@@ -5,56 +5,41 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
-import com.opensymphony.xwork2.ActionSupport;
+import paulenka.aleh.wordbook.action.RedirectBackAction;
+
 import com.opensymphony.xwork2.interceptor.I18nInterceptor;
 
-public class ChangeLocaleAction extends ActionSupport implements SessionAware {
+public class ChangeLocaleAction extends RedirectBackAction implements SessionAware {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private final static String SUCCESS = "success";
+	private Map<String, Object> session;
 
-    private final static String DEFAULT_FORWARD_URI = "/";
+	private String language;
 
-    private Map<String, Object> session;
+	public Map<String, Object> getSession() {
+		return session;
+	}
 
-    private String language;
-    private String redirectUri;
+	@Override
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
+	}
 
-    public Map<String, Object> getSession() {
-        return session;
-    }
+	public String getLanguage() {
+		return language;
+	}
 
-    @Override
-    public void setSession(Map<String, Object> session) {
-        this.session = session;
-    }
+	public void setLanguage(String language) {
+		this.language = language;
+	}
 
-    public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
-    }
-
-    public String getRedirectUri() {
-        return redirectUri;
-    }
-
-    public void setRedirectUri(String redirectUrl) {
-        this.redirectUri = redirectUrl;
-    }
-
-    @Override
-    public String execute() throws Exception {
-        if (getLanguage() != null) {
-            Locale locale = new Locale(getLanguage());
-            getSession().put(I18nInterceptor.DEFAULT_SESSION_ATTRIBUTE, locale);
-        }
-        if (getRedirectUri() == null || getRedirectUri().isEmpty()) {
-            setRedirectUri(DEFAULT_FORWARD_URI);
-        }
-        return SUCCESS;
-    }
+	@Override
+	public String execute() throws Exception {
+		if (getLanguage() != null) {
+			Locale locale = new Locale(getLanguage());
+			getSession().put(I18nInterceptor.DEFAULT_SESSION_ATTRIBUTE, locale);
+		}
+		return SUCCESS;
+	}
 }

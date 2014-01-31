@@ -25,12 +25,15 @@
 
 	<package name="user" namespace="/user" extends="default">
 		<action name="login" class="paulenka.aleh.wordbook.action.user.LoginUserAction">
-			<result name="success">/jsp/index.jsp</result>
+			<result name="success" type="redirect">${redirectUri}</result>
 			<result name="input">/jsp/user/login.jsp</result>
 		</action>
 		<action name="register" class="paulenka.aleh.wordbook.action.user.RegisterUserAction">
-			<result name="success">/jsp/index.jsp</result>
+			<result name="success" type="redirect">/</result>
 			<result name="input">/jsp/user/register.jsp</result>
+		</action>
+		<action name="logout" class="paulenka.aleh.wordbook.action.user.LogoutUserAction">
+			<result name="success" type="redirect">${redirectUri}</result>
 		</action>
 	</package>
 </struts>

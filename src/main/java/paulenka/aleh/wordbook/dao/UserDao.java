@@ -2,6 +2,7 @@ package paulenka.aleh.wordbook.dao;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.List;
 
 import paulenka.aleh.wordbook.dao.mapper.UserMapper;
 import paulenka.aleh.wordbook.db.JdbcDaoTemplate;
@@ -19,8 +20,8 @@ public class UserDao extends JdbcDaoTemplate {
             "` FROM `" + UserTable.TABLE + "` WHERE `" + UserTable.USERNAME + "` = ? LIMIT 1;";
     private final static String QUERY_CREATE_USER = "INSERT INTO `" + UserTable.TABLE +
             "` (`" + UserTable.USERNAME + "`, `" + UserTable.PASSWORD + "`) VALUES (?, ?);";
-    private final static String QUERY_GET_USER = "SELECT `" + UserTable.ID + "`, `" + UserTable.USERNAME + "`, `" + UserTable.PASSWORD +
-            "` FROM `" + UserTable.TABLE + "` WHERE `" + UserTable.ID + "` = ? LIMIT 1;";
+    private final static String QUERY_GET_USER = "SELECT * FROM `" + UserTable.TABLE + "` WHERE `" + UserTable.ID + "` = ? LIMIT 1;";
+    private final static String QUERY_LIST_USERS = "SELECT * FROM `" + UserTable.TABLE + "`;";
 
     private UserMapper userMapper;
 
@@ -57,5 +58,9 @@ public class UserDao extends JdbcDaoTemplate {
             throw new SQLException(ex);
         }
 
+    }
+
+    public List<User> list() throws SQLException {
+        return executeQuery(getUserMapper(), QUERY_LIST_USERS);
     }
 }

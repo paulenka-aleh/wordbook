@@ -4,17 +4,19 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class RedirectBackAction extends ActionSupport {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private final static String DEFAULT_REDIRECT_URI = "/";
+    public final static String REDIRECT_URI_PARAM = "redirectUri";
 
-	private String redirectUri;
+    private final static String DEFAULT_REDIRECT_URI = "/";
 
-	public String getRedirectUri() {
-		return (redirectUri != null && !redirectUri.isEmpty()) ? redirectUri : DEFAULT_REDIRECT_URI;
-	}
+    private String redirectUri;
 
-	public void setRedirectUri(String redirectUrl) {
-		this.redirectUri = redirectUrl;
-	}
+    public String getRedirectUri() {
+        return (redirectUri != null && !redirectUri.isEmpty()) ? redirectUri : DEFAULT_REDIRECT_URI;
+    }
+
+    public void setRedirectUri(String redirectUrl) {
+        this.redirectUri = redirectUrl;
+    }
 }

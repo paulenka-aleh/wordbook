@@ -15,13 +15,21 @@
 		<body>
 			<div id="wrap">
 				<s:include value="/jsp/tile/navbar.jsp">
-					<s:param name="localeRedirectUri">/user/login</s:param>
-					<s:param name="loginRedirectUri">/</s:param>
+					<c:choose>
+						<c:when test="${not empty param.redirectUri}">
+							<s:param name="localeRedirectUri">/user/login?redirectUri=${param.redirectUri}</s:param>
+						</c:when>
+						<c:otherwise>
+							<s:param name="localeRedirectUri">/user/login</s:param>
+						</c:otherwise>
+					</c:choose>
+					
+					<s:param name="loginRedirectUri">${param.redirectUri}</s:param>
 					<s:param name="logoutRedirectUri">/user/login</s:param>
 				</s:include>
 				<div class="container">
 					<s:form namespace="/user" action="login" method="post" theme="bootstrap" cssClass="form-sign">
-						<s:hidden name="redirectUri" value="/"/>
+						<input type="hidden" name="redirectUri" value="${param.redirectUri}"/>
 						<h2 class="form-sign-heading"><s:text name="sign-in-form.form-title"/></h2>
 						<s:textfield name="credentials.username" placeholder="getText('sign-in-form.username')" required="" autofocus="" cssClass="form-control"/>
 						<s:password name="credentials.password" placeholder="getText('sign-in-form.password')" required="" cssClass="form-control"/>

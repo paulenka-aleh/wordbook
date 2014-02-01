@@ -4,11 +4,23 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-	<constant name="struts.devMode" value="true" />
-
 	<constant name="struts.action.extension" value=",html" />
 
 	<package name="default" namespace="" extends="struts-default">
+		<interceptors>
+			<interceptor name="authoriztion" class="paulenka.aleh.wordbook.interceptor.AuthorizationInterceptor" />
+
+			<interceptor-stack name="wordbookStack">
+				<interceptor-ref name="authoriztion" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="wordbookStack"></default-interceptor-ref>
+
+		<global-results>
+			<result name="login" type="redirect">/user/login?redirectUri=${redirectUri}</result>
+		</global-results>
 	</package>
 
 	<package name="root" namespace="/" extends="default">
@@ -34,6 +46,10 @@
 		</action>
 		<action name="logout" class="paulenka.aleh.wordbook.action.user.LogoutUserAction">
 			<result name="success" type="redirect">${redirectUri}</result>
+		</action>
+
+		<action name="list" class="paulenka.aleh.wordbook.action.user.ListUserAction">
+			<result name="success">/jsp/user/list.jsp</result>
 		</action>
 	</package>
 </struts>

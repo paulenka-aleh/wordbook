@@ -51,5 +51,8 @@
 		<action name="list" class="paulenka.aleh.wordbook.action.user.ListUserAction">
 			<result name="success">/jsp/user/list.jsp</result>
 		</action>
+		<action name="edit" class="paulenka.aleh.wordbook.action.user.EditUserAction">
+			<result name="success">/jsp/user/edit.jsp</result>
+		</action>
 	</package>
 </struts>

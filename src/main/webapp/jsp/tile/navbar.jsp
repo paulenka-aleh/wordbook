@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="root" value="${pageContext.request.contextPath}"/>
+<s:set var="root" value="#request.get('javax.servlet.forward.context_path')"/>
 
 <s:i18n name="paulenka.aleh.wordbook.jsp.navigation">
 	<div class="navbar navbar-default navbar-fixed-top">
@@ -41,8 +40,7 @@
 					</li>
 				</ul>
 
-				<c:choose>
-					<c:when test="${not empty user}">
+				<s:if test="#session.user != null">
 					<div class="navbar-right">
 						<p class=" navbar-text">
 							<s:text name="welcome-message.welcome">
@@ -54,25 +52,24 @@
 							<s:text name="sign-in-form.sign-out-button"/>
 						</s:a>
 					</div>
-					</c:when>
-					<c:otherwise>
-						<s:form namespace="/user" action="login" method="post" theme="simple" cssClass="navbar-right navbar-form">
-							<input type="hidden" name="redirectUri" value="${param.loginRedirectUri}"/>
-							<div class="form-group">
-								<s:textfield name="credentials.username" placeholder="getText('sign-in-form.username')" cssClass="form-control"/>
-							</div>
-							<div class="form-group">
-								<s:password name="credentials.password" placeholder="getText('sign-in-form.password')" cssClass="form-control"/>
-							</div>
-							<button type="submit" class="btn btn-success">
-								<s:text name="sign-in-form.sign-in-button"/>
-							</button>
-							<s:a namespace="/user" action="register" cssClass="btn btn-primary">
-								<s:text name="sign-in-form.sign-up-button"/>
-							</s:a>
-						</s:form>
-					</c:otherwise>
-				</c:choose>
+				</s:if>
+				<s:else>
+					<s:form namespace="/user" action="login" method="post" theme="simple" cssClass="navbar-right navbar-form">
+						<input type="hidden" name="redirectUri" value="${param.loginRedirectUri}"/>
+						<div class="form-group">
+							<s:textfield name="credentials.username" placeholder="getText('sign-in-form.username')" cssClass="form-control"/>
+						</div>
+						<div class="form-group">
+							<s:password name="credentials.password" placeholder="getText('sign-in-form.password')" cssClass="form-control"/>
+						</div>
+						<button type="submit" class="btn btn-success">
+							<s:text name="sign-in-form.sign-in-button"/>
+						</button>
+						<s:a namespace="/user" action="register" cssClass="btn btn-primary">
+							<s:text name="sign-in-form.sign-up-button"/>
+						</s:a>
+					</s:form>
+				</s:else>
 			</div>
 		</div>
 	</div>

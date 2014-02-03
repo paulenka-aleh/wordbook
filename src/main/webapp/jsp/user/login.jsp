@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="root" value="${pageContext.request.contextPath}"/>
+<s:set var="root" value="#request.get('javax.servlet.forward.context_path')"/>
 
 <!DOCTYPE html>
 <s:i18n name="paulenka.aleh.wordbook.action.user.LoginUserAction">
@@ -15,15 +14,13 @@
 		<body>
 			<div id="wrap">
 				<s:include value="/jsp/tile/navbar.jsp">
-					<c:choose>
-						<c:when test="${not empty param.redirectUri}">
-							<s:param name="localeRedirectUri">/user/login?redirectUri=${param.redirectUri}</s:param>
-						</c:when>
-						<c:otherwise>
-							<s:param name="localeRedirectUri">/user/login</s:param>
-						</c:otherwise>
-					</c:choose>
-					
+					<s:if test="#parameters.redirectUri != null">
+						<s:param name="localeRedirectUri">/user/login?redirectUri=${param.redirectUri}</s:param>
+					</s:if>
+					<s:else>
+						<s:param name="localeRedirectUri">/user/login</s:param>
+					</s:else>
+
 					<s:param name="loginRedirectUri">${param.redirectUri}</s:param>
 					<s:param name="logoutRedirectUri">/user/login</s:param>
 				</s:include>

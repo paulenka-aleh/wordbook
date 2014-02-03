@@ -7,22 +7,21 @@
 	<html lang="${WW_TRANS_I18N_LOCALE.language}">
 		<head>
 			<s:include value="/jsp/tile/head.jsp"/>
-	
 			<title><s:text name="sign-in-page.title"/></title>
 		</head>
 		<body>
 			<div id="wrap">
 				<s:include value="/jsp/tile/navbar.jsp">
-					<s:param name="localeRedirectUri">/user/list</s:param>
-					<s:param name="loginRedirectUri">/user/list</s:param>
-					<s:param name="logoutRedirectUri">/user/login</s:param>
+					<s:param name="localeRedirectUri" value="/user/list" />
+					<s:param name="loginRedirectUri" value="/user/list" />
+					<s:param name="logoutRedirectUri" value="/user/login" />
 				</s:include>
 				<div class="container">
 					<div class="list-group">
 						<s:iterator value="users" var="user">
 							<s:a namespace="/user" action="edit" cssClass="list-group-item">
-								<s:param name="id" value="#user.id"/>
-								<s:property value="#user.username"/>
+								<s:param name="id" value="#user.id" />
+								<s:property value="#user.username" />
 							</s:a>
 						</s:iterator>
 					</div>

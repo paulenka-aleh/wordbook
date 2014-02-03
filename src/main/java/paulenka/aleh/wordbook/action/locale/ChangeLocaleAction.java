@@ -5,11 +5,13 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
-import paulenka.aleh.wordbook.action.RedirectBackAction;
+import paulenka.aleh.wordbook.interceptor.back.BackResultAction;
 
+import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.interceptor.I18nInterceptor;
 
-public class ChangeLocaleAction extends RedirectBackAction implements SessionAware {
+@BackResultAction
+public class ChangeLocaleAction extends ActionSupport implements SessionAware {
 
 	private static final long serialVersionUID = 1L;
 

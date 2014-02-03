@@ -9,9 +9,11 @@ import paulenka.aleh.wordbook.constant.SessionAttributes;
 import paulenka.aleh.wordbook.dao.UserDao;
 import paulenka.aleh.wordbook.entity.Registration;
 import paulenka.aleh.wordbook.entity.User;
+import paulenka.aleh.wordbook.interceptor.back.BackResultAction;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+@BackResultAction
 public class RegisterUserAction extends ActionSupport implements SessionAware {
 
 	private static final long serialVersionUID = 1L;

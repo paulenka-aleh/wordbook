@@ -6,4 +6,5 @@ public final class SessionAttributes {
 	}
 
 	public final static String USER = "user";
+	public final static String BACK_URI_STACK = "back";
 }

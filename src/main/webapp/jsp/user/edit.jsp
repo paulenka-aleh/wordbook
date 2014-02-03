@@ -13,9 +13,9 @@
 		<body>
 			<div id="wrap">
 				<s:include value="/jsp/tile/navbar.jsp">
-					<s:param name="localeRedirectUri">/user/list</s:param>
-					<s:param name="loginRedirectUri">/user/list</s:param>
-					<s:param name="logoutRedirectUri">/user/login</s:param>
+					<s:param name="localeRedirectUri" value="/user/edit" />
+					<s:param name="loginRedirectUri" value="/user/edit" />
+					<s:param name="logoutRedirectUri" value="/user/login" />
 				</s:include>
 				<div class="container">
 					${param.id}

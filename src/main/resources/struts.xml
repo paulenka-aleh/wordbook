@@ -6,13 +6,19 @@
 <struts>
 	<constant name="struts.action.extension" value=",html" />
 
+	<constant name="struts.devMode" value="true" />
+
 	<package name="default" namespace="" extends="struts-default">
 		<interceptors>
-			<interceptor name="authoriztion" class="paulenka.aleh.wordbook.interceptor.AuthorizationInterceptor" />
+			<interceptor name="back" class="paulenka.aleh.wordbook.interceptor.back.BackInterceptor" />
+			<interceptor name="authentication" class="paulenka.aleh.wordbook.interceptor.security.AuthenticationInterceptor" />
+			<interceptor name="authoriztion" class="paulenka.aleh.wordbook.interceptor.security.AuthorizationInterceptor" />
 
 			<interceptor-stack name="wordbookStack">
-				<interceptor-ref name="authoriztion" />
 				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="back" />
+				<interceptor-ref name="authentication" />
+				<interceptor-ref name="authoriztion" />
 			</interceptor-stack>
 		</interceptors>
 
@@ -31,21 +37,21 @@
 
 	<package name="locale" namespace="/locale" extends="default">
 		<action name="change-locale" class="paulenka.aleh.wordbook.action.locale.ChangeLocaleAction">
-			<result name="success" type="redirect">${redirectUri}</result>
+			<result name="success" type="redirect">${back}</result>
 		</action>
 	</package>
 
 	<package name="user" namespace="/user" extends="default">
 		<action name="login" class="paulenka.aleh.wordbook.action.user.LoginUserAction">
-			<result name="success" type="redirect">${redirectUri}</result>
+			<result name="success" type="redirect">${back}</result>
 			<result name="input">/jsp/user/login.jsp</result>
 		</action>
 		<action name="register" class="paulenka.aleh.wordbook.action.user.RegisterUserAction">
-			<result name="success" type="redirect">/</result>
+			<result name="success" type="redirect">${back}</result>
 			<result name="input">/jsp/user/register.jsp</result>
 		</action>
 		<action name="logout" class="paulenka.aleh.wordbook.action.user.LogoutUserAction">
-			<result name="success" type="redirect">${redirectUri}</result>
+			<result name="success" type="redirect">${back}</result>
 		</action>
 
 		<action name="list" class="paulenka.aleh.wordbook.action.user.ListUserAction">

@@ -5,10 +5,11 @@ import java.util.List;
 
 import paulenka.aleh.wordbook.dao.UserDao;
 import paulenka.aleh.wordbook.entity.User;
+import paulenka.aleh.wordbook.interceptor.security.Authorization;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-//@Secure(roles = AuthorizationRole.ADMINISTRATOR)
+@Authorization
 public class ListUserAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;

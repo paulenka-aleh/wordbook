@@ -8,7 +8,6 @@
 		<head>
 			<s:include value="/jsp/tile/head.jsp"/>
 			<link href="${root}/css/sign-forms.css" rel="stylesheet">
-	
 			<title><s:text name="sign-in-page.title"/></title>
 		</head>
 		<body>

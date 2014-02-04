@@ -19,19 +19,19 @@
 					--%>
 					<li>
 						<s:a namespace="/locale" action="change-locale">
-							<s:param name="language" value="be" />
+							<s:param name="language">be</s:param>
 							<img src="${root}/image/flag-belarus.png" />
 						</s:a>
 					</li>
 					<li>
 						<s:a namespace="/locale" action="change-locale">
-							<s:param name="language" value="en" />
+							<s:param name="language">en</s:param>
 							<img src="${root}/image/flag-english.png" />
 						</s:a>
 					</li>
 					<li>
 						<s:a namespace="/locale" action="change-locale">
-							<s:param name="language" value="ru" />
+							<s:param name="language">ru</s:param>
 							<img src="${root}/image/flag-russian.png" />
 						</s:a>
 					</li>
@@ -58,10 +58,10 @@
 							<s:password name="credentials.password" placeholder="getText('sign-in-form.password')" cssClass="form-control"/>
 						</div>
 						<button type="submit" class="btn btn-success">
-							<s:text name="sign-in-form.sign-in-button"/>
+							<s:text name="sign-in-form.sign-in-button" />
 						</button>
 						<s:a namespace="/user" action="register" cssClass="btn btn-primary">
-							<s:text name="sign-in-form.sign-up-button"/>
+							<s:text name="sign-in-form.sign-up-button" />
 						</s:a>
 					</s:form>
 				</s:else>

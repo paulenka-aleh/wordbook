@@ -25,7 +25,7 @@
 		<default-interceptor-ref name="wordbookStack"></default-interceptor-ref>
 
 		<global-results>
-			<result name="login" type="redirect">/user/login?redirectUri=${redirectUri}</result>
+			<result name="login" type="redirect">/user/login</result>
 		</global-results>
 	</package>
 

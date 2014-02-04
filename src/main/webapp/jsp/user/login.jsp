@@ -17,8 +17,14 @@
 					<s:form namespace="/user" action="login" method="post" theme="bootstrap" cssClass="form-sign">
 						<h2 class="form-sign-heading"><s:text name="sign-in-form.form-title" /></h2>
 
-						<s:textfield name="credentials.username" placeholder="getText('sign-in-form.username')" required="" autofocus="" cssClass="form-control" />
-						<s:password name="credentials.password" placeholder="getText('sign-in-form.password')" required="" cssClass="form-control" />
+						<div class="form-group">
+							<label for="credentials.username"><s:text name="sign-in-form.username" /></label>
+							<s:textfield id="credentials.username" name="credentials.username" placeholder="getText('sign-in-form.username')" required="" autofocus="" cssClass="form-control" />
+						</div>
+						<div class="form-group">
+							<label for="credentials.password"><s:text name="sign-in-form.password" /></label>
+							<s:password id="credentials.password" name="credentials.password" placeholder="getText('sign-in-form.password')" required="" cssClass="form-control" />
+						</div>
 
 						<s:actionerror />
 

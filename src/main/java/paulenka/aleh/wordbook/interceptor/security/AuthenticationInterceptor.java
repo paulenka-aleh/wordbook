@@ -1,10 +1,13 @@
 package paulenka.aleh.wordbook.interceptor.security;
 
+import java.util.Map;
+
 import paulenka.aleh.wordbook.constant.GlobalActionResults;
 import paulenka.aleh.wordbook.constant.SessionAttributes;
 import paulenka.aleh.wordbook.entity.User;
 import paulenka.aleh.wordbook.util.ActionAnnotationUtil;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 
@@ -25,6 +28,9 @@ public class AuthenticationInterceptor extends AbstractInterceptor {
 
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
+		Map<?, ?> application = (Map<?, ?>) ActionContext.getContext().get("application");
+		System.out.println(application.get("javax.servlet.context.tempdir"));
+
 		if (isAuthenticationRequired(invocation) && getAutenticatedUser(invocation) == null) {
 			return GlobalActionResults.LOGIN;
 		} else {

@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<s:set var="root" value="#request.get('javax.servlet.forward.context_path')" />
+<s:set var="root">${pageContext.request.contextPath}</s:set>
 
 <!DOCTYPE html>
 <s:i18n name="paulenka.aleh.wordbook.action.user.RegisterUserAction">
-	<html lang="${WW_TRANS_I18N_LOCALE.language}">
+	<html lang="${locale.language}">
 		<head>
 			<s:include value="/jsp/tile/head.jsp" />
-			<link rel="stylesheet" href="${root}/css/sign-forms.css" />
+			<link rel="stylesheet" href="${root}/css/sign-form.css" />
 			<title><s:text name="sign-up-page.title" /></title>
 		</head>
 		<body>

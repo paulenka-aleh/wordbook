@@ -1,13 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<s:set var="root" value="#request.get('javax.servlet.forward.context_path')"/>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<s:set var="root">${pageContext.request.contextPath}</s:set>
 
 <s:i18n name="paulenka.aleh.wordbook.jsp.header">
 	<div class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
 				<s:a namespace="/" action="" cssClass="navbar-brand">
-					<s:text name="application.title"/>
+					<s:text name="application.title" />
 				</s:a>
 			</div>
 			<div class="collapse navbar-collapse">
@@ -19,39 +19,38 @@
 					--%>
 					<li>
 						<s:a namespace="/locale" action="change-locale">
-							<s:param name="language">be</s:param>
-							<img src="${root}/image/flag-belarus.png"/>
+							<s:param name="language" value="be" />
+							<img src="${root}/image/flag-belarus.png" />
 						</s:a>
 					</li>
 					<li>
 						<s:a namespace="/locale" action="change-locale">
-							<s:param name="language">en</s:param>
-							<img src="${root}/image/flag-english.png"/>
+							<s:param name="language" value="en" />
+							<img src="${root}/image/flag-english.png" />
 						</s:a>
 					</li>
 					<li>
 						<s:a namespace="/locale" action="change-locale">
-							<s:param name="language">ru</s:param>
-							<img src="${root}/image/flag-russian.png"/>
+							<s:param name="language" value="ru" />
+							<img src="${root}/image/flag-russian.png" />
 						</s:a>
 					</li>
 				</ul>
 
-				<s:if test="#session.user != null">
+				<s:if test="%{#session.user != null}">
 					<div class="navbar-right">
-						<p class=" navbar-text">
+						<p class="navbar-text">
 							<s:text name="welcome-message.welcome">
-								<s:param>${user.username}</s:param>
+								<s:param value="%{#session.user.username}" />
 							</s:text>
 						</p>
 						<s:a namespace="/user" action="logout" cssClass="btn btn-primary navbar-btn">
-							<s:text name="sign-in-form.sign-out-button"/>
+							<s:text name="sign-in-form.sign-out-button" />
 						</s:a>
 					</div>
 				</s:if>
 				<s:else>
 					<s:form namespace="/user" action="login" method="post" theme="simple" cssClass="navbar-right navbar-form">
-						<input type="hidden" name="redirectUri" value="${param.loginRedirectUri}"/>
 						<div class="form-group">
 							<s:textfield name="credentials.username" placeholder="getText('sign-in-form.username')" cssClass="form-control"/>
 						</div>

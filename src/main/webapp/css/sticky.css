@@ -16,4 +16,9 @@ html, body {
 
 #wrap > .container {
 	padding-top: 60px;
-}    
+}
+
+.navbar-right .navbar-text {
+	float: none;
+	display: inline-block;
+}

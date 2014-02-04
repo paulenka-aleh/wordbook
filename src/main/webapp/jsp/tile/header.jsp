@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <s:set var="root" value="#request.get('javax.servlet.forward.context_path')"/>
 
-<s:i18n name="paulenka.aleh.wordbook.jsp.navigation">
+<s:i18n name="paulenka.aleh.wordbook.jsp.header">
 	<div class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -20,21 +20,18 @@
 					<li>
 						<s:a namespace="/locale" action="change-locale">
 							<s:param name="language">be</s:param>
-							<s:param name="redirectUri">${param.localeRedirectUri}</s:param>
 							<img src="${root}/image/flag-belarus.png"/>
 						</s:a>
 					</li>
 					<li>
 						<s:a namespace="/locale" action="change-locale">
 							<s:param name="language">en</s:param>
-							<s:param name="redirectUri">${param.localeRedirectUri}</s:param>
 							<img src="${root}/image/flag-english.png"/>
 						</s:a>
 					</li>
 					<li>
 						<s:a namespace="/locale" action="change-locale">
 							<s:param name="language">ru</s:param>
-							<s:param name="redirectUri">${param.localeRedirectUri}</s:param>
 							<img src="${root}/image/flag-russian.png"/>
 						</s:a>
 					</li>
@@ -48,7 +45,6 @@
 							</s:text>
 						</p>
 						<s:a namespace="/user" action="logout" cssClass="btn btn-primary navbar-btn">
-							<s:param name="redirectUri">${param.logoutRedirectUri}</s:param>
 							<s:text name="sign-in-form.sign-out-button"/>
 						</s:a>
 					</div>

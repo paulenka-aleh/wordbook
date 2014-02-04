@@ -1,18 +1,18 @@
-.form-sign {
+.form {
 	max-width: 600px;
 	padding: 15px;
 	margin: 0 auto;
 }
 
-.form-sign .form-sign-heading, .form-sign {
+.form .form-heading, .form {
 	margin-bottom: 10px;
 }
 
-.form-sign {
+.form {
 	font-weight: normal;
 }
 
-.form-sign .form-control {
+.form .form-control {
 	position: relative;
 	font-size: 16px;
 	height: auto;
@@ -22,11 +22,11 @@
 	box-sizing: border-box;
 }
 
-.form-sign .form-control:focus {
+.form .form-control:focus {
 	z-index: 2;
 }
 
-.form-sign input[type="text"], .form-sign input[type="password"] {
+.form input[type="text"], .form input[type="password"] {
 	margin-bottom: 10px;
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;

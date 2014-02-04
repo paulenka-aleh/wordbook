@@ -7,15 +7,15 @@
 	<html lang="${locale.language}">
 		<head>
 			<s:include value="/jsp/tile/head.jsp" />
-			<link rel="stylesheet" href="${root}/css/sign-form.css" />
+			<link rel="stylesheet" href="${root}/css/form.css" />
 			<title><s:text name="sign-up-page.title" /></title>
 		</head>
 		<body>
 			<div id="wrap">
 				<s:include value="/jsp/tile/header.jsp" />
 				<div class="container">
-					<s:form namespace="/user" action="register" method="post" theme="bootstrap" cssClass="form-sign">
-						<h2 class="form-sign-heading"><s:text name="sign-up-form.form-title" /></h2>
+					<s:form namespace="/user" action="register" method="post" theme="bootstrap" cssClass="form">
+						<h2 class="form-heading"><s:text name="sign-up-form.form-title" /></h2>
 
 						<div class="form-group">
 							<label for="registration.username"><s:text name="sign-up-form.username"/></label>

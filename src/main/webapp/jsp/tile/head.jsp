@@ -12,5 +12,5 @@
 
 <sb:head includeScripts="true" includeScriptsValidation="false" includeStyles="true" includeStylesResponsive="false" />
 
-<link rel="stylesheet" href="${root}/css/sticky-footer-navbar.css" />
+<link rel="stylesheet" href="${root}/css/sticky.css" />
 <link rel="shortcut icon" href="${root}/image/wordbook.png" />

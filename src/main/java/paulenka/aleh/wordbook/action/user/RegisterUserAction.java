@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
-import paulenka.aleh.wordbook.constant.SessionAttributes;
+import paulenka.aleh.wordbook.constant.SessionAttribute;
 import paulenka.aleh.wordbook.dao.UserDao;
 import paulenka.aleh.wordbook.entity.Registration;
 import paulenka.aleh.wordbook.entity.User;
@@ -50,7 +50,7 @@ public class RegisterUserAction extends ActionSupport implements SessionAware {
 
 	@Override
 	public String execute() {
-		if (getSession().containsKey(SessionAttributes.USER)) {
+		if (getSession().containsKey(SessionAttribute.USER)) {
 			return SUCCESS;
 		}
 		if (getRegistration() == null) {
@@ -58,7 +58,7 @@ public class RegisterUserAction extends ActionSupport implements SessionAware {
 		}
 		try {
 			User user = getUserDao().register(getRegistration());
-			getSession().put(SessionAttributes.USER, user);
+			getSession().put(SessionAttribute.USER, user);
 			return SUCCESS;
 		} catch (SQLException e) {
 			e.printStackTrace();

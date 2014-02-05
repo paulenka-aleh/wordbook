@@ -1,6 +1,6 @@
 package paulenka.aleh.wordbook.interceptor.security;
 
-import paulenka.aleh.wordbook.constant.SessionAttributes;
+import paulenka.aleh.wordbook.constant.SessionAttribute;
 import paulenka.aleh.wordbook.entity.User;
 import paulenka.aleh.wordbook.util.ActionAnnotationUtil;
 
@@ -20,7 +20,7 @@ public class AuthenticationInterceptor extends AbstractInterceptor {
 	}
 
 	protected User getAutenticatedUser(ActionInvocation invocation) {
-		return (User) invocation.getInvocationContext().getSession().get(SessionAttributes.USER);
+		return (User) invocation.getInvocationContext().getSession().get(SessionAttribute.USER);
 	}
 
 	@Override

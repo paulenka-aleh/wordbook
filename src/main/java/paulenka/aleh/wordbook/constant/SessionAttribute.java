@@ -1,8 +1,8 @@
 package paulenka.aleh.wordbook.constant;
 
-public final class SessionAttributes {
+public final class SessionAttribute {
 
-	private SessionAttributes() {
+	private SessionAttribute() {
 	}
 
 	public final static String USER = "user";

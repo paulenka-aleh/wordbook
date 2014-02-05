@@ -1,10 +1,10 @@
 package paulenka.aleh.wordbook.interceptor.security;
 
-import paulenka.aleh.wordbook.constant.GlobalActionResults;
 import paulenka.aleh.wordbook.constant.SessionAttributes;
 import paulenka.aleh.wordbook.entity.User;
 import paulenka.aleh.wordbook.util.ActionAnnotationUtil;
 
+import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 
@@ -26,7 +26,7 @@ public class AuthenticationInterceptor extends AbstractInterceptor {
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
 		if (isAuthenticationRequired(invocation) && getAutenticatedUser(invocation) == null) {
-			return GlobalActionResults.LOGIN;
+			return Action.LOGIN;
 		} else {
 			return invocation.invoke();
 		}

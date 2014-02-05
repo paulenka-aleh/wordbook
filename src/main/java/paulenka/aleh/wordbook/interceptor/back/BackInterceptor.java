@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
 
-import paulenka.aleh.wordbook.constant.SessionAttributes;
+import paulenka.aleh.wordbook.constant.SessionAttribute;
 import paulenka.aleh.wordbook.util.ActionAnnotationUtil;
 
 import com.opensymphony.xwork2.Action;
@@ -25,10 +25,10 @@ public class BackInterceptor extends AbstractInterceptor {
 	@SuppressWarnings("unchecked")
 	protected Deque<String> getBackUriStack(ActionInvocation invocation) {
 		Map<String, Object> session = invocation.getInvocationContext().getSession();
-		if (!session.containsKey(SessionAttributes.BACK_URI_STACK)) {
-			session.put(SessionAttributes.BACK_URI_STACK, new ArrayDeque<>());
+		if (!session.containsKey(SessionAttribute.BACK_URI_STACK)) {
+			session.put(SessionAttribute.BACK_URI_STACK, new ArrayDeque<>());
 		}
-		return (Deque<String>) session.get(SessionAttributes.BACK_URI_STACK);
+		return (Deque<String>) session.get(SessionAttribute.BACK_URI_STACK);
 	}
 
 	protected boolean isBackAction(ActionInvocation invocation) {

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
 
 import paulenka.aleh.wordbook.constant.AuthorizationRole;
-import paulenka.aleh.wordbook.constant.SessionAttributes;
+import paulenka.aleh.wordbook.constant.SessionAttribute;
 import paulenka.aleh.wordbook.dao.RoleDao;
 import paulenka.aleh.wordbook.entity.User;
 import paulenka.aleh.wordbook.util.ActionAnnotationUtil;
@@ -34,7 +34,7 @@ public class AuthorizationInterceptor extends AbstractInterceptor {
 	}
 
 	protected User getAutenticatedUser(ActionInvocation invocation) {
-		return (User) invocation.getInvocationContext().getSession().get(SessionAttributes.USER);
+		return (User) invocation.getInvocationContext().getSession().get(SessionAttribute.USER);
 	}
 
 	protected boolean isUserAuthorizedForAction(ActionInvocation invocation) throws SQLException, NoSuchMethodException {

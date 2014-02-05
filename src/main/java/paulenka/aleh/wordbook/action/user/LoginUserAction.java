@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
-import paulenka.aleh.wordbook.constant.SessionAttributes;
+import paulenka.aleh.wordbook.constant.SessionAttribute;
 import paulenka.aleh.wordbook.dao.UserDao;
 import paulenka.aleh.wordbook.entity.Credentials;
 import paulenka.aleh.wordbook.entity.User;
@@ -52,7 +52,7 @@ public class LoginUserAction extends ActionSupport implements SessionAware {
 
 	@Override
 	public String execute() {
-		if (getSession().containsKey(SessionAttributes.USER)) {
+		if (getSession().containsKey(SessionAttribute.USER)) {
 			return SUCCESS;
 		}
 		if (getCredentials() == null || (getCredentials().getUsername() == null || getCredentials().getUsername().isEmpty()) &&
@@ -62,7 +62,7 @@ public class LoginUserAction extends ActionSupport implements SessionAware {
 		try {
 			User user = getUserDao().login(getCredentials());
 			if (user != null) {
-				getSession().put(SessionAttributes.USER, user);
+				getSession().put(SessionAttribute.USER, user);
 				return SUCCESS;
 			} else {
 				addActionError(getText("sign-in-form.error"));

@@ -4,7 +4,7 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
-import paulenka.aleh.wordbook.constant.SessionAttributes;
+import paulenka.aleh.wordbook.constant.SessionAttribute;
 import paulenka.aleh.wordbook.interceptor.back.BackResultAction;
 import paulenka.aleh.wordbook.interceptor.security.Authorization;
 
@@ -29,7 +29,7 @@ public class LogoutUserAction extends ActionSupport implements SessionAware {
 
 	@Override
 	public String execute() {
-		getSession().remove(SessionAttributes.USER);
+		getSession().remove(SessionAttribute.USER);
 		return SUCCESS;
 	}
 }

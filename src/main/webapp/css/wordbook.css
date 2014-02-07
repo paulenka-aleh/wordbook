@@ -1,0 +1,11 @@
+.full-height {
+	height: 100%!important;
+}
+
+.padding {
+	padding: 15px;
+}
+
+textarea {
+	resize: none;
+}

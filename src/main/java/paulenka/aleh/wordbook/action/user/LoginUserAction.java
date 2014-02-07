@@ -12,7 +12,6 @@ import paulenka.aleh.wordbook.entity.User;
 import paulenka.aleh.wordbook.interceptor.back.BackResultAction;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.inject.Inject;
 
 @BackResultAction
 public class LoginUserAction extends ActionSupport implements SessionAware {
@@ -25,7 +24,6 @@ public class LoginUserAction extends ActionSupport implements SessionAware {
 
 	private Credentials credentials;
 
-	@Inject
 	protected UserDao getUserDao() {
 		if (userDao == null) {
 			userDao = new UserDao();

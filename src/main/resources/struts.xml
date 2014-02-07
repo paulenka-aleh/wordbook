@@ -61,4 +61,10 @@
 			<result name="success">/jsp/user/edit.jsp</result>
 		</action>
 	</package>
+
+	<package name="wordbook" namespace="/wordbook" extends="default">
+		<action name="" class="paulenka.aleh.wordbook.action.wordbook.ViewWordbookAction">
+			<result name="success">/jsp/wordbook/wordbook.jsp</result>
+		</action>
+	</package>
 </struts>

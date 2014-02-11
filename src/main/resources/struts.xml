@@ -60,5 +60,8 @@
 		<action name="edit" class="paulenka.aleh.wordbook.action.user.EditUserAction">
 			<result name="success">/jsp/user/edit.jsp</result>
 		</action>
+		<action name="delete" class="paulenka.aleh.wordbook.action.user.DeleteUserAction">
+			<result name="success" type="redirect">/user/list</result>
+		</action>
 	</package>
 </struts>

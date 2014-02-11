@@ -7,13 +7,13 @@
 	<html lang="${locale.language}">
 		<head>
 			<s:include value="/jsp/tile/head.jsp" />
-			<title><s:text name="user-edit-page.title" /></title>
+			<title><%-- <s:text name="user-edit-page.title" /> --%></title>
 		</head>
 		<body>
 			<div id="wrap">
 				<s:include value="/jsp/tile/header.jsp" />
 				<div class="container">
-					${param.id}
+					
 				</div>
 			</div>
 			<s:include value="/jsp/tile/footer.jsp" />

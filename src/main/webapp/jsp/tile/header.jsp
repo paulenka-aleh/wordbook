@@ -53,10 +53,10 @@
 				<s:else>
 					<s:form namespace="/user" action="login" method="post" theme="simple" cssClass="navbar-right navbar-form">
 						<div class="form-group">
-							<s:textfield name="credentials.username" placeholder="getText('sign-in-form.username')" cssClass="form-control"/>
+							<s:textfield name="credentials.username" placeholder="%{getText('sign-in-form.username')}" cssClass="form-control"/>
 						</div>
 						<div class="form-group">
-							<s:password name="credentials.password" placeholder="getText('sign-in-form.password')" cssClass="form-control"/>
+							<s:password name="credentials.password" placeholder="%{getText('sign-in-form.password')}" cssClass="form-control"/>
 						</div>
 						<button type="submit" class="btn btn-success">
 							<span class="glyphicon glyphicon-log-in"></span>&nbsp;

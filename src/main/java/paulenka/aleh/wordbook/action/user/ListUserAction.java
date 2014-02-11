@@ -41,7 +41,7 @@ public class ListUserAction extends ActionSupport {
         } catch (SQLException ex) {
             // TODO: Redirect to 500 page
             ex.printStackTrace();
-            return SUCCESS;
+            return ERROR;
         }
     }
 }

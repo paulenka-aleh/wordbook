@@ -9,6 +9,7 @@
 <meta name="author" content="Aleh Paulenka">
 
 <script type="text/javascript" src="${root}/jquery/js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="${root}/js/utils.js"></script>
 
 <sb:head includeScripts="true" includeScriptsValidation="false" includeStyles="true" includeStylesResponsive="false" />
 

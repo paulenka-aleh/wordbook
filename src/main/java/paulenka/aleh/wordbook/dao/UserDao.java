@@ -17,6 +17,7 @@ public class UserDao extends JdbcDaoTemplate {
     private final static String QUERY_LOGIN = "SELECT * FROM `" + UserTable.TABLE + "` WHERE `" + UserTable.USERNAME + "` = ? AND `" + UserTable.PASSWORD + "` = ? LIMIT 1;";
     private final static String QUERY_IS_USER_EXISTS = "SELECT * FROM `" + UserTable.TABLE + "` WHERE `" + UserTable.USERNAME + "` = ? LIMIT 1;";
     private final static String QUERY_CREATE_USER = "INSERT INTO `" + UserTable.TABLE + "` (`" + UserTable.USERNAME + "`, `" + UserTable.PASSWORD + "`) VALUES (?, ?);";
+    private final static String QUERY_DELETE_USER = "DELETE FROM `" + UserTable.TABLE + "` WHERE `" + UserTable.ID + "` = ? LIMIT 1;";
     private final static String QUERY_GET_USER = "SELECT * FROM `" + UserTable.TABLE + "` WHERE `" + UserTable.ID + "` = ? LIMIT 1;";
     private final static String QUERY_LIST_USERS = "SELECT * FROM `" + UserTable.TABLE + "`;";
 
@@ -50,14 +51,22 @@ public class UserDao extends JdbcDaoTemplate {
             byte[] passwordHash = HashingUtil.sha2(registration.getPassword());
 
             int id = executeInsert(QUERY_CREATE_USER, username, passwordHash);
-            return executeQueryWithSingleResult(getUserMapper(), QUERY_GET_USER, id);
+            return get(id);
         } catch (NoSuchAlgorithmException ex) {
             throw new SQLException(ex);
         }
 
     }
 
+    public User get(int id) throws SQLException {
+        return executeQueryWithSingleResult(getUserMapper(), QUERY_GET_USER, id);
+    }
+
     public List<User> list() throws SQLException {
         return executeQuery(getUserMapper(), QUERY_LIST_USERS);
+    }
+
+    public void delete(int id) throws SQLException {
+        executeUpdate(QUERY_DELETE_USER, id);
     }
 }

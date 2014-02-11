@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
 
+import paulenka.aleh.wordbook.constant.HttpRequestMethod;
 import paulenka.aleh.wordbook.constant.SessionAttribute;
 import paulenka.aleh.wordbook.util.ActionAnnotationUtil;
 
@@ -40,23 +41,30 @@ public class BackInterceptor extends AbstractInterceptor {
 
     protected String getCurrentUri() {
         HttpServletRequest request = ServletActionContext.getRequest();
-        return request.getRequestURI().substring(request.getContextPath().length());
+        String requesrUri = request.getRequestURI().substring(request.getContextPath().length());
+        if (request.getQueryString() != null) {
+            requesrUri += '?' + request.getQueryString();
+        }
+        return requesrUri;
     }
 
     @Override
     public String intercept(ActionInvocation invocation) throws Exception {
+
         if (getBackUriStack(invocation).isEmpty()) {
             getBackUriStack(invocation).push(DEFAULT_BACK_URI);
         }
 
         invocation.getStack().set(BACK_ATTRIBUTE, getBackUriStack(invocation).getFirst());
 
-        if (!isBackAction(invocation)) {
-            getBackUriStack(invocation).clear();
-        }
+        if (HttpRequestMethod.GET.equalsIgnoreCase(ServletActionContext.getRequest().getMethod())) {
+            if (!isBackAction(invocation)) {
+                getBackUriStack(invocation).clear();
+            }
 
-        getBackUriStack(invocation).remove(getCurrentUri());
-        getBackUriStack(invocation).push(getCurrentUri());
+            getBackUriStack(invocation).remove(getCurrentUri());
+            getBackUriStack(invocation).push(getCurrentUri());
+        }
 
         String result = invocation.invoke();
 

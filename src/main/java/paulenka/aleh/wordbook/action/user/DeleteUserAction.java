@@ -9,7 +9,7 @@ import paulenka.aleh.wordbook.interceptor.security.Authorization;
 import com.opensymphony.xwork2.ActionSupport;
 
 @Authorization
-public class EditUserAction extends ActionSupport {
+public class DeleteUserAction extends ActionSupport {
 
     private static final long serialVersionUID = 1L;
 
@@ -35,7 +35,7 @@ public class EditUserAction extends ActionSupport {
     @Override
     public String execute() {
         try {
-            setUser(getUserDao().get(getUser().getId()));
+            getUserDao().delete(getUser().getId());
             return SUCCESS;
         } catch (SQLException ex) {
             // TODO: Redirect to 500 page

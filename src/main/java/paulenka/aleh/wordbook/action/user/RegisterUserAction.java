@@ -60,9 +60,10 @@ public class RegisterUserAction extends ActionSupport implements SessionAware {
             User user = getUserDao().register(getRegistration());
             getSession().put(SessionAttribute.USER, user);
             return SUCCESS;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return INPUT;
+        } catch (SQLException ex) {
+            // TODO: forward to 500 page
+            ex.printStackTrace();
+            return ERROR;
         }
     }
 
@@ -71,8 +72,6 @@ public class RegisterUserAction extends ActionSupport implements SessionAware {
         if (getRegistration() != null) {
             validateUsername(getRegistration().getUsername());
             validatePassword(getRegistration().getPassword(), getRegistration().getConfirmedPassword());
-
-            System.out.println(getFieldErrors());
         }
     }
 

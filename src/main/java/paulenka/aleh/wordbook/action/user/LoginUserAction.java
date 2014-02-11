@@ -69,7 +69,7 @@ public class LoginUserAction extends ActionSupport implements SessionAware {
         } catch (SQLException ex) {
             // TODO: Redirect to 500 page
             ex.printStackTrace();
-            return INPUT;
+            return ERROR;
         }
     }
 }

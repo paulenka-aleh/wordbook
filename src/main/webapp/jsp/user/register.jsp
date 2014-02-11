@@ -19,17 +19,17 @@
 
 						<div class="form-group">
 							<label for="registration.username"><s:text name="sign-up-form.username"/></label>
-							<s:textfield id="registration.username" name="registration.username" placeholder="getText('sign-up-form.username')" required="" autofocus="" cssClass="form-control" />
+							<s:textfield id="registration.username" name="registration.username" placeholder="%{getText('sign-up-form.username')}" required="" autofocus="" cssClass="form-control" />
 							<s:fielderror fieldName="registration.username" />
 						</div>
 						<div class="form-group">
 							<label for="registration.password"><s:text name="sign-up-form.password"/></label>
-							<s:password id="registration.password" name="registration.password" placeholder="getText('sign-up-form.password')" required="" cssClass="form-control" />
+							<s:password id="registration.password" name="registration.password" placeholder="%{getText('sign-up-form.password')}" required="" cssClass="form-control" />
 							<s:fielderror fieldName="registration.password" />
 						</div>
 						<div class="form-group">
 							<label for="registration.confirmedPassword"><s:text name="sign-up-form.confirm-password"/></label>
-							<s:password id="registration.confirmedPassword" name="registration.confirmedPassword" placeholder="getText('sign-up-form.confirm-password')" required="" cssClass="form-control" />
+							<s:password id="registration.confirmedPassword" name="registration.confirmedPassword" placeholder="%{getText('sign-up-form.confirm-password')}" required="" cssClass="form-control" />
 							<s:fielderror fieldName="registration.confirmedPassword" />
 						</div>
 

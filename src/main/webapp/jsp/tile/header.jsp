@@ -45,23 +45,26 @@
 							</s:text>
 						</p>
 						<s:a namespace="/user" action="logout" cssClass="btn btn-primary navbar-btn">
-							<s:text name="sign-in-form.sign-out-button" />
+							<span class="glyphicon glyphicon-log-out"></span>&nbsp;
+							<span><s:text name="sign-in-form.sign-out-button" /></span>
 						</s:a>
 					</div>
 				</s:if>
 				<s:else>
 					<s:form namespace="/user" action="login" method="post" theme="simple" cssClass="navbar-right navbar-form">
 						<div class="form-group">
-							<s:textfield name="credentials.username" placeholder="getText('sign-in-form.username')" cssClass="form-control"/>
+							<s:textfield name="credentials.username" placeholder="%{getText('sign-in-form.username')}" cssClass="form-control"/>
 						</div>
 						<div class="form-group">
-							<s:password name="credentials.password" placeholder="getText('sign-in-form.password')" cssClass="form-control"/>
+							<s:password name="credentials.password" placeholder="%{getText('sign-in-form.password')}" cssClass="form-control"/>
 						</div>
 						<button type="submit" class="btn btn-success">
-							<s:text name="sign-in-form.sign-in-button" />
+							<span class="glyphicon glyphicon-log-in"></span>&nbsp;
+							<span><s:text name="sign-in-form.sign-in-button" /></span>
 						</button>
 						<s:a namespace="/user" action="register" cssClass="btn btn-primary">
-							<s:text name="sign-in-form.sign-up-button" />
+							<span class="glyphicon glyphicon-pencil"></span>&nbsp;
+							<span><s:text name="sign-in-form.sign-up-button" /></span>
 						</s:a>
 					</s:form>
 				</s:else>

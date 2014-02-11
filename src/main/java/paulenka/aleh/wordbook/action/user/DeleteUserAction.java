@@ -3,6 +3,7 @@ package paulenka.aleh.wordbook.action.user;
 import java.sql.SQLException;
 
 import paulenka.aleh.wordbook.dao.UserDao;
+import paulenka.aleh.wordbook.entity.User;
 import paulenka.aleh.wordbook.interceptor.security.Authorization;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -14,7 +15,7 @@ public class DeleteUserAction extends ActionSupport {
 
     private UserDao userDao;
 
-    private int id;
+    private User user;
 
     protected UserDao getUserDao() {
         if (userDao == null) {
@@ -23,18 +24,18 @@ public class DeleteUserAction extends ActionSupport {
         return userDao;
     }
 
-    public int getId() {
-        return id;
+    public User getUser() {
+        return user;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
     public String execute() {
         try {
-            getUserDao().delete(getId());
+            getUserDao().delete(getUser().getId());
             return SUCCESS;
         } catch (SQLException ex) {
             // TODO: Redirect to 500 page

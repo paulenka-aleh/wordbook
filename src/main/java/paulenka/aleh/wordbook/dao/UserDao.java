@@ -51,11 +51,15 @@ public class UserDao extends JdbcDaoTemplate {
             byte[] passwordHash = HashingUtil.sha2(registration.getPassword());
 
             int id = executeInsert(QUERY_CREATE_USER, username, passwordHash);
-            return executeQueryWithSingleResult(getUserMapper(), QUERY_GET_USER, id);
+            return get(id);
         } catch (NoSuchAlgorithmException ex) {
             throw new SQLException(ex);
         }
 
+    }
+
+    public User get(int id) throws SQLException {
+        return executeQueryWithSingleResult(getUserMapper(), QUERY_GET_USER, id);
     }
 
     public List<User> list() throws SQLException {

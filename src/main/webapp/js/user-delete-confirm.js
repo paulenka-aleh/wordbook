@@ -7,6 +7,6 @@ $(function() {
 		var name = $(e.relatedTarget).attr('data-user-name');
 
 		$('#delete-confirm-message').text(message.format(id, name));
-		$('#delete-confirm-a').attr('href', url + '?id=' + id);
+		$('#delete-confirm-a').attr('href', url + '?user.id=' + id);
 	});
 });

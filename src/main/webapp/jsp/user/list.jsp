@@ -51,7 +51,7 @@
 								</span>
 								<div class="pull-right">
 									<s:a namespace="/user" action="edit" cssClass="btn btn-sm btn-warning">
-										<s:param name="id" value="%{#user.id}" />
+										<s:param name="user.id" value="%{#user.id}" />
 										<span class="glyphicon glyphicon-edit"></span>&nbsp;
 										<span><s:text name="user-list.edit" /></span>
 									</s:a>

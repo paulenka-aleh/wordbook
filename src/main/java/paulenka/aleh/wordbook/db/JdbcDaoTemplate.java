@@ -11,64 +11,64 @@ import java.util.List;
 
 public abstract class JdbcDaoTemplate {
 
-	protected Connection createConnection() throws SQLException {
-		try {
-			return ConnectionManager.getInstance().getConnection();
-		} catch (ClassNotFoundException | IOException ex) {
-			throw new SQLException(ex);
-		}
-	}
+    protected Connection createConnection() throws SQLException {
+        try {
+            return ConnectionManager.getInstance().getConnection();
+        } catch (ClassNotFoundException | IOException ex) {
+            throw new SQLException(ex);
+        }
+    }
 
-	protected void substituteArguments(PreparedStatement statement, Object... arguments) throws SQLException {
-		for (int i = 0; arguments != null && i < arguments.length; ++i) {
-			statement.setObject(i + 1, arguments[i]);
-		}
-	}
+    protected void substituteArguments(PreparedStatement statement, Object... arguments) throws SQLException {
+        for (int i = 0; arguments != null && i < arguments.length; ++i) {
+            statement.setObject(i + 1, arguments[i]);
+        }
+    }
 
-	protected <T> List<T> executeQuery(JdbcEntityMapper<? extends T> mapper, String query, Object... arguments) throws SQLException {
-		try (Connection connection = createConnection()) {
+    protected <T> List<T> executeQuery(JdbcEntityMapper<? extends T> mapper, String query, Object... arguments) throws SQLException {
+        try (Connection connection = createConnection()) {
 
-			try (PreparedStatement statement = connection.prepareStatement(query)) {
-				substituteArguments(statement, arguments);
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                substituteArguments(statement, arguments);
 
-				try (ResultSet set = statement.executeQuery()) {
-					List<T> result = new ArrayList<>(set.getFetchSize());
+                try (ResultSet set = statement.executeQuery()) {
+                    List<T> result = new ArrayList<>(set.getFetchSize());
 
-					while (set.next()) {
-						result.add(mapper.map(set));
-					}
+                    while (set.next()) {
+                        result.add(mapper.map(set));
+                    }
 
-					return result;
-				}
-			}
-		}
-	}
+                    return result;
+                }
+            }
+        }
+    }
 
-	protected <T> T executeQueryWithSingleResult(JdbcEntityMapper<? extends T> mapper, String query, Object... arguments) throws SQLException {
-		List<T> results = executeQuery(mapper, query, arguments);
-		return results == null || results.isEmpty() ? null : results.get(0);
-	}
+    protected <T> T executeQueryWithSingleResult(JdbcEntityMapper<? extends T> mapper, String query, Object... arguments) throws SQLException {
+        List<T> results = executeQuery(mapper, query, arguments);
+        return results == null || results.isEmpty() ? null : results.get(0);
+    }
 
-	protected void executeUpdate(String query, Object... arguments) throws SQLException {
-		try (Connection connection = createConnection()) {
-			try (PreparedStatement statement = connection.prepareStatement(query)) {
-				substituteArguments(statement, arguments);
-				statement.executeUpdate();
-			}
-		}
-	}
+    protected void executeUpdate(String query, Object... arguments) throws SQLException {
+        try (Connection connection = createConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                substituteArguments(statement, arguments);
+                statement.executeUpdate();
+            }
+        }
+    }
 
-	protected int executeInsert(String query, Object... arguments) throws SQLException {
-		try (Connection connection = createConnection()) {
-			try (PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-				substituteArguments(statement, arguments);
-				statement.executeUpdate();
+    protected int executeInsert(String query, Object... arguments) throws SQLException {
+        try (Connection connection = createConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+                substituteArguments(statement, arguments);
+                statement.executeUpdate();
 
-				try (ResultSet set = statement.getGeneratedKeys()) {
-					set.next();
-					return set.getInt(1);
-				}
-			}
-		}
-	}
+                try (ResultSet set = statement.getGeneratedKeys()) {
+                    set.next();
+                    return set.getInt(1);
+                }
+            }
+        }
+    }
 }

@@ -9,8 +9,8 @@ import paulenka.aleh.wordbook.entity.User;
 
 public class UserMapper implements JdbcEntityMapper<User> {
 
-	@Override
-	public User map(ResultSet result) throws SQLException {
-		return new User(result.getInt(UserTable.ID), result.getString(UserTable.USERNAME), result.getBytes(UserTable.PASSWORD));
-	}
+    @Override
+    public User map(ResultSet result) throws SQLException {
+        return new User(result.getInt(UserTable.ID), result.getString(UserTable.USERNAME), result.getBytes(UserTable.PASSWORD));
+    }
 }

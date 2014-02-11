@@ -8,19 +8,19 @@ import com.opensymphony.xwork2.ActionSupport;
 @Authorization
 public class EditUserAction extends ActionSupport {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private UserDao userDao;
+    private UserDao userDao;
 
-	protected UserDao getUserDao() {
-		if (userDao == null) {
-			userDao = new UserDao();
-		}
-		return userDao;
-	}
+    protected UserDao getUserDao() {
+        if (userDao == null) {
+            userDao = new UserDao();
+        }
+        return userDao;
+    }
 
-	@Override
-	public String execute() {
-		return SUCCESS;
-	}
+    @Override
+    public String execute() {
+        return SUCCESS;
+    }
 }

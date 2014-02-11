@@ -14,22 +14,22 @@ import com.opensymphony.xwork2.ActionSupport;
 @BackResultAction
 public class LogoutUserAction extends ActionSupport implements SessionAware {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private Map<String, Object> session;
+    private Map<String, Object> session;
 
-	public Map<String, Object> getSession() {
-		return session;
-	}
+    public Map<String, Object> getSession() {
+        return session;
+    }
 
-	@Override
-	public void setSession(Map<String, Object> session) {
-		this.session = session;
-	}
+    @Override
+    public void setSession(Map<String, Object> session) {
+        this.session = session;
+    }
 
-	@Override
-	public String execute() {
-		getSession().remove(SessionAttribute.USER);
-		return SUCCESS;
-	}
+    @Override
+    public String execute() {
+        getSession().remove(SessionAttribute.USER);
+        return SUCCESS;
+    }
 }

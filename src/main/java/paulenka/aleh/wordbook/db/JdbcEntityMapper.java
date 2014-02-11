@@ -5,5 +5,5 @@ import java.sql.SQLException;
 
 public interface JdbcEntityMapper<T> {
 
-	public T map(ResultSet result) throws SQLException;
+    public T map(ResultSet result) throws SQLException;
 }

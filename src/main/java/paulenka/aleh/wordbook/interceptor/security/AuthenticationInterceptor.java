@@ -10,25 +10,25 @@ import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 
 public class AuthenticationInterceptor extends AbstractInterceptor {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	protected boolean isAuthenticationRequired(ActionInvocation invocation) throws NoSuchMethodException {
-		Authorization actionClassAnnotation = ActionAnnotationUtil.getActionClassAnnotation(invocation, Authorization.class);
-		Authorization actionMethodAnnotation = ActionAnnotationUtil.getActionMethodAnnotation(invocation, Authorization.class);
+    protected boolean isAuthenticationRequired(ActionInvocation invocation) throws NoSuchMethodException {
+        Authorization actionClassAnnotation = ActionAnnotationUtil.getActionClassAnnotation(invocation, Authorization.class);
+        Authorization actionMethodAnnotation = ActionAnnotationUtil.getActionMethodAnnotation(invocation, Authorization.class);
 
-		return actionClassAnnotation != null || actionMethodAnnotation != null;
-	}
+        return actionClassAnnotation != null || actionMethodAnnotation != null;
+    }
 
-	protected User getAutenticatedUser(ActionInvocation invocation) {
-		return (User) invocation.getInvocationContext().getSession().get(SessionAttribute.USER);
-	}
+    protected User getAutenticatedUser(ActionInvocation invocation) {
+        return (User) invocation.getInvocationContext().getSession().get(SessionAttribute.USER);
+    }
 
-	@Override
-	public String intercept(ActionInvocation invocation) throws Exception {
-		if (isAuthenticationRequired(invocation) && getAutenticatedUser(invocation) == null) {
-			return Action.LOGIN;
-		} else {
-			return invocation.invoke();
-		}
-	}
+    @Override
+    public String intercept(ActionInvocation invocation) throws Exception {
+        if (isAuthenticationRequired(invocation) && getAutenticatedUser(invocation) == null) {
+            return Action.LOGIN;
+        } else {
+            return invocation.invoke();
+        }
+    }
 }

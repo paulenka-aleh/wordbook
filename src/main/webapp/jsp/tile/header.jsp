@@ -9,8 +9,13 @@
 				<s:a namespace="/" action="" cssClass="navbar-brand">
 					<s:text name="application.title" />
 				</s:a>
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
 			</div>
-			<div class="collapse navbar-collapse">
+			<div id="navbar-collapse" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 					<%--
 						<li><a href="#about">Wordbook</a></li>

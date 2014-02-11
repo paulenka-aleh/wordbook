@@ -7,12 +7,8 @@
 	<head>
 		<s:include value="/jsp/tile/head.jsp" />
 		<link rel="stylesheet" href="${root}/css/wordbook.css" />
-		<title>Главная страница</title>
-		<script type="text/javascript">
-			$(function() {
-				$('#xxx').fill();
-			});
-		</script>
+		<script type="text/javascript" src="${root}/js/wordbook.js"></script>
+		<title><s:text name="wordbook-page.title" /></title>
 	</head>
 	<body>
 		<div id="wrap" class="full-height">
@@ -20,42 +16,29 @@
 			<div class="full-height container padding">
 				<div class="col-xs-4 full-height">
 					<div class="full-height">
-						<div class="input-group" style="margin-bottom: 10px;">
-							<input type="search" class="form-control" />
+						<div id="word-search-wrap" class="input-group">
+							<input id="word-search" type="search" class="form-control" placeholder="<s:text name="word-list.filter" />" autofocus="autofocus" />
 							<span class="input-group-addon">
 								<span class="glyphicon glyphicon-search"></span>
 							</span>
 						</div>
-						<div id="xxx">
-							<div class="list-group" style="margin-bottom: 0px; border: 1px solid #ccc; border-radius: 4px; overflow: auto; height: 100%;">
-								<a href="#" class="list-group-item">123</a>
-								<a href="#" class="list-group-item">123</a>
-								<a href="#" class="list-group-item">123</a>
-								<a href="#" class="list-group-item">123</a>
-								<a href="#" class="list-group-item">123</a>
-								<a href="#" class="list-group-item">123</a>
-								<a href="#" class="list-group-item">123</a>
-								<a href="#" class="list-group-item">123</a>
-								<a href="#" class="list-group-item">123</a>
-								<a href="#" class="list-group-item">123</a>
-								<a href="#" class="list-group-item">123</a>
-								<a href="#" class="list-group-item">123</a>
-								<a href="#" class="list-group-item">123</a>
-								<a href="#" class="list-group-item">123</a>
-								<a href="#" class="list-group-item">123</a>
+						<div id="word-list-wrap">
+							<div id="word-list" class="list-group full-height">
+								<a href="#" class="list-group-item">здесь</a>
+								<a href="#" class="list-group-item">будет</a>
+								<a href="#" class="list-group-item">список</a>
+								<a href="#" class="list-group-item">слов</a>
 							</div>
 						</div>
-						<ul class="pager" style="margin-bottom: 0; margin-top: 10px;">
+						<ul id="word-list-pager" class="pager" style="overflow-y: hidden;">
 							<li class="previous"><a href="#"><span class="glyphicon glyphicon-arrow-left"></span></a></li>
-							<li><span>Page 22 of 55</span></li>
+							<li><span id="pager-label"><s:text name="word-list.pager" /></span></li>
 							<li class="next"><a href="#"><span class="glyphicon glyphicon-arrow-right"></span></a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="col-xs-8 full-height">
-					<div class="full-height" style="background: #f8f8f8; border-radius: 4px; border: 1px solid #ccc;">
-
-					</div>
+					<div id="word-explanation" class="full-height">Здесь будет толкование слова.</div>
 				</div>
 			</div>
 		</div>

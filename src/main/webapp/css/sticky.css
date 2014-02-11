@@ -22,3 +22,10 @@ html, body {
 	float: none;
 	display: inline-block;
 }
+
+.navbar-fixed-top {
+	position: absolute;
+	min-width: 100%;
+	left: auto;
+	right: auto;
+}

@@ -25,3 +25,21 @@ String.prototype.format = function () {
 		return this;
 	};
 })(jQuery);
+
+$(function() {
+	$('html').on('scroll', function () {
+		console.log('xxx');
+	});
+	
+	$('body').on('scroll', function () {
+		console.log('xxx');
+	});
+	
+	$('#wrap').on('scroll', function () {
+		console.log('xxx');
+	});
+	
+	$('#wrap').on('scroll', function () {
+		console.log('xxx');
+	});
+});

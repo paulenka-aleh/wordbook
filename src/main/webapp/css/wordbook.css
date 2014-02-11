@@ -6,6 +6,46 @@
 	padding: 15px;
 }
 
-textarea {
-	resize: none;
+#word-search-wrap {
+	margin-bottom: 10px;
+}
+
+#word-search:focus {
+	box-shadow: none;
+}
+
+#word-list {
+	margin: 0;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	overflow-x: auto;
+	overflow-y: scroll;
+}
+
+#word-list-pager {
+	margin-bottom: 0;
+	margin-top: 10px;
+}
+
+#word-list {
+	background-color: #f8f8f8;
+}
+
+#word-list > .list-group-item {
+	border-left-style: none;
+	border-right-style: none;
+	word-wrap: break-word;
+}
+
+#word-list > .list-group-item:first-child {
+	border-top-style: none;
+}
+
+#word-explanation {
+	background-color: #f8f8f8;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	padding: 10px;
+
+	font-size: 120%;
 }

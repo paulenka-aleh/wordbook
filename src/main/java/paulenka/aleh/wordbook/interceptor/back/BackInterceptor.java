@@ -42,7 +42,10 @@ public class BackInterceptor extends AbstractInterceptor {
     protected String getCurrentUri() {
         HttpServletRequest request = ServletActionContext.getRequest();
         String requesrUri = request.getRequestURI().substring(request.getContextPath().length());
-        return requesrUri + '?' + request.getQueryString();
+        if (request.getQueryString() != null) {
+            requesrUri += '?' + request.getQueryString();
+        }
+        return requesrUri;
     }
 
     @Override

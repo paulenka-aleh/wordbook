@@ -24,14 +24,17 @@
 							</p>
 						</div>
 						<div class="modal-footer">
-							<a class="btn btn-default" data-dismiss="modal">
-								<span class="glyphicon glyphicon-circle-arrow-left"></span>&nbsp;
-								<span><s:text name="delete-confirm.cancel" /></span>
-							</a>
-							<s:a id="delete-confirm-a" namespace="/user" action="delete" cssClass="btn btn-danger">
-								<span class="glyphicon glyphicon-remove"></span>&nbsp;
-								<span><s:text name="delete-confirm.delete" /></span>
-							</s:a>
+							<s:form namespace="/user" action="delete" method="post">
+								<a class="btn btn-default" data-dismiss="modal">
+									<span class="glyphicon glyphicon-circle-arrow-left"></span>&nbsp;
+									<span><s:text name="delete-confirm.cancel" /></span>
+								</a>
+								<button type="submit" class="btn btn-danger">
+									<s:hidden id="delete-confirm-id" />
+									<span class="glyphicon glyphicon-remove"></span>&nbsp;
+									<span><s:text name="delete-confirm.delete" /></span>
+								</button>
+							</s:form>
 						</div>
 					</div>
 				</div>

@@ -7,7 +7,7 @@ public final class WordTable {
 
     public final static String TABLE = "word";
 
-    public final static String ID = "id";
-    public final static String WORD = "word";
-    public final static String EXPLANATION = "explanation";
+    public final static String ID = TABLE + "." + "id";
+    public final static String WORD = TABLE + "." + "word";
+    public final static String EXPLANATION = TABLE + "." + "explanation";
 }

@@ -17,6 +17,11 @@ public class Word {
         this.explanation = explanation;
     }
 
+    public Word(int id, String word) {
+        this.id = id;
+        this.word = word;
+    }
+
     public int getId() {
         return id;
     }

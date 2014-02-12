@@ -29,3 +29,8 @@ html, body {
 	left: auto;
 	right: auto;
 }
+
+.logo {
+	padding: 1px 15px 1px 0;
+	margin-left: 0px;
+}

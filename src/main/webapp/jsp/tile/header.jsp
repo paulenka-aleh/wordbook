@@ -6,8 +6,8 @@
 	<div class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
-				<s:a namespace="/" action="" cssClass="navbar-brand">
-					<s:text name="application.title" />
+				<s:a namespace="/" action="" cssClass="navbar-brand logo">
+					<img src="${root}/image/wordbook-logo.png" />
 				</s:a>
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
 					<span class="icon-bar"></span>
@@ -17,11 +17,16 @@
 			</div>
 			<div id="navbar-collapse" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<%--
-						<li><a href="#about">Wordbook</a></li>
-						<li><a href="#about">Users</a></li>
-						<li><a href="#about">About</a></li>
-					--%>
+					<li>
+						<s:a namespace="/wordbook" action="">
+							<s:text name="navigation.wordbook" />
+						</s:a>
+					</li>
+					<li>
+						<s:a namespace="/user" action="list">
+							<s:text name="navigation.users" />
+						</s:a>
+					</li>
 					<li>
 						<s:a namespace="/locale" action="change-locale">
 							<s:param name="language">be</s:param>

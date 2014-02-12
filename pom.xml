@@ -7,5 +7,6 @@
 	
 	<modules>
 		<module>wordbook.ui</module>
+		<module>wordbook.docs</module>
 	</modules>
 </project>

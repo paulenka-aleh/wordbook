@@ -42,7 +42,7 @@ public class UserDaoImpl extends JdbcDaoTemplate implements UserDao {
         }
     }
 
-    public boolean isUserExists(String username) throws SQLException {
+    public boolean isUsernameExists(String username) throws SQLException {
         return executeQueryWithSingleResult(getUserMapper(), QUERY_IS_USER_EXISTS, username) != null;
     }
 

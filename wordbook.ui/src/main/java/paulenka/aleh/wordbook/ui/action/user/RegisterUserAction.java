@@ -82,7 +82,7 @@ public class RegisterUserAction extends ActionSupport implements SessionAware {
                 addFieldError("registration.username", getText("sign-up-form.error.username.empty"));
             } else if (!username.matches("^[a-zA-Z][a-zA-Z\\d]{2,11}$")) {
                 addFieldError("registration.username", getText("sign-up-form.error.username.regex"));
-            } else if (getUserDao().isUserExists(username)) {
+            } else if (getUserDao().isUsernameExists(username)) {
                 addFieldError("registration.username", getText("sign-up-form.error.username.already-exists"));
             }
         } catch (SQLException ex) {

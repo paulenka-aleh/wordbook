@@ -11,7 +11,7 @@ public interface UserDao {
 
     public User login(Credentials credentials) throws SQLException;
 
-    public boolean isUserExists(String username) throws SQLException;
+    public boolean isUsernameExists(String username) throws SQLException;
 
     public User register(Registration registration) throws SQLException;
 

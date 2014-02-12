@@ -2,11 +2,11 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <s:set var="root">${pageContext.request.contextPath}</s:set>
 
-<s:i18n name="paulenka.aleh.wordbook.jsp.header">
+<s:i18n name="paulenka.aleh.wordbook.ui.jsp.header">
 	<div class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
-				<s:a namespace="/" action="" cssClass="navbar-brand logo">
+				<s:a id="logo" namespace="/" action="" cssClass="navbar-brand">
 					<img src="${root}/image/wordbook-logo.png" />
 				</s:a>
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">

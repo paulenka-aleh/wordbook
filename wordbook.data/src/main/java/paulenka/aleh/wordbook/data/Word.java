@@ -10,6 +10,9 @@ public class Word extends Entity {
     private String word;
     private String explanation;
 
+    public Word() {
+    }
+
     public Word(String word, String explanation) {
         this.word = word;
         this.explanation = explanation;

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE struts PUBLIC
-"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
-"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
 	<constant name="struts.action.extension" value=",html" />
@@ -9,7 +7,6 @@
 	<constant name="struts.devMode" value="true" />
 
 	<package name="default" namespace="" extends="json-default">
-
 		<interceptors>
 			<interceptor name="back" class="paulenka.aleh.wordbook.ui.interceptor.back.BackInterceptor" />
 			<interceptor name="authentication" class="paulenka.aleh.wordbook.ui.interceptor.security.AuthenticationInterceptor" />
@@ -37,51 +34,47 @@
 	</package>
 
 	<package name="locale" namespace="/locale" extends="default">
-		<action name="change-locale"
-			class="paulenka.aleh.wordbook.ui.action.locale.ChangeLocaleAction">
+		<action name="change-locale" class="paulenka.aleh.wordbook.ui.action.locale.ChangeLocaleAction">
 			<result name="success" type="redirect">${back}</result>
 		</action>
 	</package>
 
 	<package name="user" namespace="/user" extends="default">
-		<action name="login"
-			class="paulenka.aleh.wordbook.ui.action.user.LoginUserAction">
+		<action name="login" class="paulenka.aleh.wordbook.ui.action.user.LoginUserAction">
 			<result name="success" type="redirect">${back}</result>
 			<result name="input">/jsp/user/login.jsp</result>
 		</action>
-		<action name="register"
-			class="paulenka.aleh.wordbook.ui.action.user.RegisterUserAction">
+		<action name="register" class="paulenka.aleh.wordbook.ui.action.user.RegisterUserAction">
 			<result name="success" type="redirect">${back}</result>
 			<result name="input">/jsp/user/register.jsp</result>
 		</action>
-		<action name="logout"
-			class="paulenka.aleh.wordbook.ui.action.user.LogoutUserAction">
+		<action name="logout" class="paulenka.aleh.wordbook.ui.action.user.LogoutUserAction">
 			<result name="success" type="redirect">${back}</result>
 		</action>
 
-		<action name="list"
-			class="paulenka.aleh.wordbook.ui.action.user.ListUserAction">
+		<action name="list" class="paulenka.aleh.wordbook.ui.action.user.ListUserAction">
 			<result name="success">/jsp/user/list.jsp</result>
 		</action>
-		<action name="edit"
-			class="paulenka.aleh.wordbook.ui.action.user.EditUserAction">
+		<action name="edit" class="paulenka.aleh.wordbook.ui.action.user.EditUserAction">
 			<result name="success">/jsp/user/edit.jsp</result>
 		</action>
-		<action name="delete"
-			class="paulenka.aleh.wordbook.ui.action.user.DeleteUserAction">
+		<action name="delete" class="paulenka.aleh.wordbook.ui.action.user.DeleteUserAction">
 			<result name="success" type="redirect">/user/list</result>
 		</action>
 	</package>
 
 	<package name="wordbook" namespace="/wordbook" extends="default">
-		<action name=""
-			class="paulenka.aleh.wordbook.ui.action.wordbook.ViewWordbookAction">
+		<action name="" class="paulenka.aleh.wordbook.ui.action.wordbook.ViewWordbookAction">
 			<result name="success">/jsp/wordbook/wordbook.jsp</result>
 		</action>
-		<action name="list"
-			class="paulenka.aleh.wordbook.ui.action.wordbook.WordListAction">
+		<action name="list" class="paulenka.aleh.wordbook.ui.action.wordbook.WordListAction">
 			<result name="success" type="json">
 				<param name="root">listResponse</param>
+			</result>
+		</action>
+		<action name="explanation" class="paulenka.aleh.wordbook.ui.action.wordbook.WordExplanationAction">
+			<result name="success" type="json">
+				<param name="root">word</param>
 			</result>
 		</action>
 	</package>

@@ -1,12 +1,7 @@
 package paulenka.aleh.wordbook.ui.action.wordbook;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts2.interceptor.ServletResponseAware;
 
 import paulenka.aleh.wordbook.dao.WordDao;
 import paulenka.aleh.wordbook.dao.impl.WordDaoImpl;
@@ -15,24 +10,14 @@ import paulenka.aleh.wordbook.ui.data.WordListRequest;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class WordListAction extends ActionSupport implements ServletResponseAware {
+public class WordListAction extends ActionSupport {
 
     private static final long serialVersionUID = 1L;
-
-    private HttpServletResponse servletResponse;
 
     private WordDao wordDao;
 
     private WordListRequest listRequest;
-
-    public HttpServletResponse getServletResponse() {
-        return servletResponse;
-    }
-
-    @Override
-    public void setServletResponse(HttpServletResponse servletResponse) {
-        this.servletResponse = servletResponse;
-    }
+    private List<Word> wordList;
 
     public WordDao getWordDao() {
         if (wordDao == null) {
@@ -49,16 +34,24 @@ public class WordListAction extends ActionSupport implements ServletResponseAwar
         this.listRequest = listRequest;
     }
 
+    public List<Word> getWordList() {
+        return wordList;
+    }
+
+    public void setWordList(List<Word> wordList) {
+        this.wordList = wordList;
+    }
+
     @Override
     public String execute() {
         try {
             List<Word> list = getWordDao().list(getListRequest().getFilter(), getListRequest().getSize(), getListRequest().getPage());
-            getServletResponse().getWriter().println(list);
-        } catch (IOException | SQLException ex) {
+            setWordList(list);
+            return SUCCESS;
+        } catch (SQLException ex) {
             // TODO Auto-generated catch block
             ex.printStackTrace();
             return ERROR;
         }
-        return NONE;
     }
 }

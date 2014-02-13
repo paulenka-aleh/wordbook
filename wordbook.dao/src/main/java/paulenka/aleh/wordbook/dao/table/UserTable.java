@@ -7,7 +7,7 @@ public final class UserTable {
 
     public final static String TABLE = "user";
 
-    public final static String ID = TABLE + "." + "id";
-    public final static String USERNAME = TABLE + "." + "username";
-    public final static String PASSWORD = TABLE + "." + "password";
+    public final static String ID = "id";
+    public final static String USERNAME = "username";
+    public final static String PASSWORD = "password";
 }

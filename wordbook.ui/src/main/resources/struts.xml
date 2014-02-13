@@ -69,5 +69,6 @@
 		<action name="" class="paulenka.aleh.wordbook.ui.action.wordbook.ViewWordbookAction">
 			<result name="success">/jsp/wordbook/wordbook.jsp</result>
 		</action>
+		<action name="list" class="paulenka.aleh.wordbook.ui.action.wordbook.WordListAction" />
 	</package>
 </struts>

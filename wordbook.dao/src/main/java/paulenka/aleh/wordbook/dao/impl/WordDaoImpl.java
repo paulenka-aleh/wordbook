@@ -12,7 +12,7 @@ import paulenka.aleh.wordbook.db.JdbcDaoTemplate;
 
 public class WordDaoImpl extends JdbcDaoTemplate implements WordDao {
 
-    private final static String QUERY_LIST_WORDS = "SELECT `" + WordTable.ID + "`, `" + WordTable.WORD + "` FROM `" + WordTable.TABLE + "` WHERE `" + WordTable.WORD + " LIKE ? LIMIT ?, ?;";
+    private final static String QUERY_LIST_WORDS = "SELECT `" + WordTable.ID + "`, `" + WordTable.WORD + "` FROM `" + WordTable.TABLE + "` WHERE `" + WordTable.WORD + "` LIKE ? LIMIT ?, ?;";
     private final static String QUERY_GET_WORD = "SELECT * FROM `" + WordTable.TABLE + "` WHERE `" + WordTable.ID + "` = ? LIMIT 1;";
     private final static String QUERY_CREATE_WORD = "INSERT INTO `" + WordTable.TABLE + "` (`" + WordTable.WORD + "`, `" + WordTable.EXPLANATION + "`) VALUES (?, ?);";
     private final static String QUERY_DELETE_WORD = "DELETE FROM `" + WordTable.TABLE + "` WHERE `" + WordTable.ID + "` = ? LIMIT 1;";

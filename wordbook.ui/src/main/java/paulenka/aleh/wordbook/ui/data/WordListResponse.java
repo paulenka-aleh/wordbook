@@ -5,7 +5,7 @@ import java.util.List;
 import paulenka.aleh.wordbook.data.Word;
 import paulenka.aleh.wordbook.data.util.Entity;
 
-public class WordbookDataResponse extends Entity {
+public class WordListResponse extends Entity {
 
     private static final long serialVersionUID = 1L;
 

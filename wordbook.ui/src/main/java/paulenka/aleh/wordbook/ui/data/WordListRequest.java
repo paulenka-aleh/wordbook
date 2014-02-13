@@ -2,7 +2,7 @@ package paulenka.aleh.wordbook.ui.data;
 
 import paulenka.aleh.wordbook.data.util.Entity;
 
-public class WordbookDataRequest extends Entity {
+public class WordListRequest extends Entity {
 
     private static final long serialVersionUID = 1L;
 

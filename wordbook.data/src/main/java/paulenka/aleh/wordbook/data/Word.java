@@ -1,6 +1,10 @@
 package paulenka.aleh.wordbook.data;
 
-public class Word {
+import paulenka.aleh.wordbook.data.util.Entity;
+
+public class Word extends Entity {
+
+    private static final long serialVersionUID = 1L;
 
     private int id;
     private String word;

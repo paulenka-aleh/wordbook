@@ -48,4 +48,6 @@
 	padding: 10px;
 
 	font-size: 120%;
+	
+	overflow: auto;
 }

@@ -2,6 +2,7 @@
 	$.fn.wordList = function(options) {
 		var page = 50;
 		
+		var $this = this;
 		var $filter = $(options.filter);
 
 		var $pager = $(options.pager);
@@ -12,6 +13,7 @@
 		var total = 0;
 
 		var $explanation = $(options.explanation);
+		var activeId = 0;
 
 		var updating = false;
 
@@ -27,9 +29,41 @@
 			return '<a href="#" data-word-id="{0}" class="list-group-item">{1}</a>'.format(word.id, word.word);
 		};
 
+		var activateWord = function(active) {
+			$this.find('a.list-group-item').each(function(index, a) {
+				$a = $(a);
+				$a.toggleClass('active', $a.is(active));
+			});
+		};
+		
+		var populateExplanation = function(word) {
+			$explanation.append(word.explanation);
+		};
+
+		var updateExplanation = function() {
+			$explanation.empty();
+			activeId = $this.find('.active').attr('data-word-id');
+			
+			if (activeId) {
+				$.post(options.explanationUrl, { 'word.id' : activeId }).done(populateExplanation).fail(function() {
+					alert("error");
+				});
+			}
+		};
+
 		var populateWordList = function(words) {
-			$('#word-list').empty();
-			$('#word-list').append($.map(words, wrapWord).join(''));
+			$this.append($.map(words, wrapWord).join(''));
+
+			$this.find('.list-group-item').each(function(index, a) {
+				var $a = $(a);
+				$a.on('click', function() {
+					activateWord($a);
+					updateExplanation();
+				});
+			});
+
+			activateWord($this.find('[data-word-id=' + activeId + ']'));
+			updateExplanation();
 		};
 
 		var pagerIndex = function() {
@@ -50,6 +84,7 @@
 
 		var update = function() {
 			updating = true;
+			$this.empty();
 
 			$.post(options.listUrl, createRequest()).done(populate).fail(function() {
 				alert("error");
@@ -84,9 +119,9 @@
 		$pagerNext.on('click', next);
 
 		update();
-	};
 
-	return this;
+		return this;
+	};
 })(jQuery);
 
 $(function() {

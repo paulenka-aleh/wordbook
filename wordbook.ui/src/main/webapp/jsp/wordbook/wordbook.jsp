@@ -23,8 +23,7 @@
 							</span>
 						</div>
 						<div id="word-list-wrap">
-							<div id="word-list" class="list-group full-height">
-							</div>
+							<div id="word-list" class="list-group full-height"></div>
 						</div>
 						<ul id="word-list-pager" data-page-index="0" class="pager" style="overflow-y: hidden;">
 							<li class="previous"><a href="#"><span class="glyphicon glyphicon-arrow-left"></span></a></li>
@@ -34,7 +33,7 @@
 					</div>
 				</div>
 				<div class="col-xs-8 full-height">
-					<div id="word-explanation" class="full-height">Здесь будет толкование слова.</div>
+					<div id="word-explanation" class="full-height"></div>
 				</div>
 			</div>
 		</div>

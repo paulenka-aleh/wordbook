@@ -7,6 +7,7 @@ import paulenka.aleh.wordbook.dao.WordDao;
 import paulenka.aleh.wordbook.dao.impl.WordDaoImpl;
 import paulenka.aleh.wordbook.data.Word;
 import paulenka.aleh.wordbook.ui.data.WordListRequest;
+import paulenka.aleh.wordbook.ui.data.WordListResponse;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -17,7 +18,7 @@ public class WordListAction extends ActionSupport {
     private WordDao wordDao;
 
     private WordListRequest listRequest;
-    private List<Word> wordList;
+    private WordListResponse listResponse;
 
     public WordDao getWordDao() {
         if (wordDao == null) {
@@ -34,19 +35,20 @@ public class WordListAction extends ActionSupport {
         this.listRequest = listRequest;
     }
 
-    public List<Word> getWordList() {
-        return wordList;
+    public WordListResponse getListResponse() {
+        return listResponse;
     }
 
-    public void setWordList(List<Word> wordList) {
-        this.wordList = wordList;
+    public void setListResponse(WordListResponse listResponse) {
+        this.listResponse = listResponse;
     }
 
     @Override
     public String execute() {
         try {
             List<Word> list = getWordDao().list(getListRequest().getFilter(), getListRequest().getSize(), getListRequest().getPage());
-            setWordList(list);
+            int size = getWordDao().getFetchSizeForFilter(getListRequest().getFilter());
+            setListResponse(new WordListResponse(list, size));
             return SUCCESS;
         } catch (SQLException ex) {
             // TODO Auto-generated catch block

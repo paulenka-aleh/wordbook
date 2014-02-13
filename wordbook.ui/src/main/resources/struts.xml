@@ -80,8 +80,8 @@
 		</action>
 		<action name="list"
 			class="paulenka.aleh.wordbook.ui.action.wordbook.WordListAction">
-			<result type="json">
-				<param name="root">wordList</param>
+			<result name="success" type="json">
+				<param name="root">listResponse</param>
 			</result>
 		</action>
 	</package>

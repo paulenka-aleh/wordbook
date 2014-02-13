@@ -24,15 +24,11 @@
 						</div>
 						<div id="word-list-wrap">
 							<div id="word-list" class="list-group full-height">
-								<a href="#" class="list-group-item">здесь</a>
-								<a href="#" class="list-group-item">будет</a>
-								<a href="#" class="list-group-item">список</a>
-								<a href="#" class="list-group-item">слов</a>
 							</div>
 						</div>
-						<ul id="word-list-pager" class="pager" style="overflow-y: hidden;">
+						<ul id="word-list-pager" data-page-index="0" class="pager" style="overflow-y: hidden;">
 							<li class="previous"><a href="#"><span class="glyphicon glyphicon-arrow-left"></span></a></li>
-							<li><span id="pager-label"><s:text name="word-list.pager" /></span></li>
+							<li class="pager-label"><span><s:text name="word-list.pager" /></span></li>
 							<li class="next"><a href="#"><span class="glyphicon glyphicon-arrow-right"></span></a></li>
 						</ul>
 					</div>

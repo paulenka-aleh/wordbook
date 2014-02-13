@@ -12,6 +12,11 @@ public class WordListResponse extends Entity {
     private List<Word> words;
     private int total;
 
+    public WordListResponse(List<Word> words, int total) {
+        this.words = words;
+        this.total = total;
+    }
+
     public List<Word> getWords() {
         return words;
     }

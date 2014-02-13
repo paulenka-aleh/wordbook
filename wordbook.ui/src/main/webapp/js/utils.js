@@ -15,8 +15,8 @@ String.prototype.format = function () {
 		var height = function(element) { return $(element).outerHeight(true); };
 		var sum = function(previous, current) { return previous + current; };
 
-		var before = $.map(prev, height).reduce(sum);
-		var after = $.map(next, height).reduce(sum);
+		var before = prev.length == 0 ? 0 : $.map(prev, height).reduce(sum);
+		var after = next.length == 0 ? 0 : $.map(next, height).reduce(sum);
 
 		parent.css({ 'padding-top' : before, 'padding-bottom' : after });
 		this.css({ 'height' : '100%' });

@@ -1,5 +1,6 @@
 package paulenka.aleh.wordbook.dao.impl;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -9,11 +10,12 @@ import paulenka.aleh.wordbook.dao.mapper.WordMapper;
 import paulenka.aleh.wordbook.dao.table.WordTable;
 import paulenka.aleh.wordbook.data.Word;
 import paulenka.aleh.wordbook.db.JdbcDaoTemplate;
+import paulenka.aleh.wordbook.db.JdbcEntityMapper;
 
 public class WordDaoImpl extends JdbcDaoTemplate implements WordDao {
 
-    private final static String QUERY_LIST_WORDS = "SELECT `" + WordTable.ID + "`, `" + WordTable.WORD + "` FROM `" + WordTable.TABLE + "` WHERE `" + WordTable.WORD + "` LIKE ? ORDER BY `"
-            + WordTable.WORD + "` LIMIT ?, ?;";
+    private final static String QUERY_LIST_WORDS = "SELECT `" + WordTable.ID + "`, `" + WordTable.WORD + "` FROM `" + WordTable.TABLE + "` WHERE `" + WordTable.WORD + "` LIKE ? ORDER BY `" + WordTable.WORD + "` LIMIT ?, ?;";
+    private final static String QUERY_FETCH_SIZE_FOR_FILTER = "SELECT COUNT(`" + WordTable.ID + "`) FROM `" + WordTable.TABLE + "` WHERE `" + WordTable.WORD + "` LIKE ?;";
     private final static String QUERY_GET_WORD = "SELECT * FROM `" + WordTable.TABLE + "` WHERE `" + WordTable.ID + "` = ? LIMIT 1;";
     private final static String QUERY_CREATE_WORD = "INSERT INTO `" + WordTable.TABLE + "` (`" + WordTable.WORD + "`, `" + WordTable.EXPLANATION + "`) VALUES (?, ?);";
     private final static String QUERY_DELETE_WORD = "DELETE FROM `" + WordTable.TABLE + "` WHERE `" + WordTable.ID + "` = ? LIMIT 1;";
@@ -39,6 +41,17 @@ public class WordDaoImpl extends JdbcDaoTemplate implements WordDao {
     @Override
     public List<Word> list(String filter, int size, int page) throws SQLException {
         return executeQuery(getWordListMapper(), QUERY_LIST_WORDS, "%" + filter + "%", page * size, size);
+    }
+
+    @Override
+    public int getFetchSizeForFilter(String filter) throws SQLException {
+        return executeQueryWithSingleResult(new JdbcEntityMapper<Integer>() {
+
+            @Override
+            public Integer map(ResultSet result) throws SQLException {
+                return result.getInt(1);
+            }
+        }, QUERY_FETCH_SIZE_FOR_FILTER, "%" + filter + "%");
     }
 
     @Override

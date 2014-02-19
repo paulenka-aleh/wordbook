@@ -1,44 +1,26 @@
 package paulenka.aleh.wordbook.ui.action.user;
 
 import java.sql.SQLException;
-import java.util.Map;
 
-import org.apache.struts2.interceptor.SessionAware;
-
-import paulenka.aleh.wordbook.dao.UserDao;
-import paulenka.aleh.wordbook.dao.impl.UserDaoImpl;
 import paulenka.aleh.wordbook.data.Credentials;
-import paulenka.aleh.wordbook.data.User;
-import paulenka.aleh.wordbook.ui.constant.SessionAttribute;
+import paulenka.aleh.wordbook.ui.action.common.ProcessFormAction;
 import paulenka.aleh.wordbook.ui.interceptor.back.BackResultAction;
-
-import com.opensymphony.xwork2.ActionSupport;
+import paulenka.aleh.wordbook.ui.login.LoginManager;
 
 @BackResultAction
-public class LoginUserAction extends ActionSupport implements SessionAware {
+public class LoginUserAction extends ProcessFormAction {
 
     private static final long serialVersionUID = 1L;
 
-    private Map<String, Object> session;
-
-    private UserDao userDao;
+    private LoginManager loginManager;
 
     private Credentials credentials;
 
-    protected UserDao getUserDao() {
-        if (userDao == null) {
-            userDao = new UserDaoImpl();
+    protected LoginManager getLoginManager() {
+        if (loginManager == null) {
+            loginManager = new LoginManager();
         }
-        return userDao;
-    }
-
-    public Map<String, Object> getSession() {
-        return session;
-    }
-
-    @Override
-    public void setSession(Map<String, Object> session) {
-        this.session = session;
+        return loginManager;
     }
 
     public Credentials getCredentials() {
@@ -50,18 +32,26 @@ public class LoginUserAction extends ActionSupport implements SessionAware {
     }
 
     @Override
-    public String execute() {
-        if (getSession().containsKey(SessionAttribute.USER)) {
+    public String execute() throws Exception {
+        if (getLoginManager().isLoggedIn()) {
             return SUCCESS;
         }
+        return super.execute();
+    }
+
+    @Override
+    public String view() {
+        return INPUT;
+    }
+
+    @Override
+    public String process() {
         if (getCredentials() == null || (getCredentials().getUsername() == null || getCredentials().getUsername().isEmpty()) &&
                 (getCredentials().getPassword() == null || getCredentials().getPassword().isEmpty())) {
             return INPUT;
         }
         try {
-            User user = getUserDao().login(getCredentials());
-            if (user != null) {
-                getSession().put(SessionAttribute.USER, user);
+            if (getLoginManager().login(getCredentials())) {
                 return SUCCESS;
             } else {
                 addActionError(getText("sign-in-form.error"));

@@ -1,44 +1,37 @@
 package paulenka.aleh.wordbook.ui.action.user;
 
 import java.sql.SQLException;
-import java.util.Map;
-
-import org.apache.struts2.interceptor.SessionAware;
 
 import paulenka.aleh.wordbook.dao.UserDao;
 import paulenka.aleh.wordbook.dao.impl.UserDaoImpl;
 import paulenka.aleh.wordbook.data.Registration;
 import paulenka.aleh.wordbook.data.User;
-import paulenka.aleh.wordbook.ui.constant.SessionAttribute;
+import paulenka.aleh.wordbook.ui.action.common.ProcessFormAction;
 import paulenka.aleh.wordbook.ui.interceptor.back.BackResultAction;
-
-import com.opensymphony.xwork2.ActionSupport;
+import paulenka.aleh.wordbook.ui.login.LoginManager;
 
 @BackResultAction
-public class RegisterUserAction extends ActionSupport implements SessionAware {
+public class RegisterUserAction extends ProcessFormAction {
 
     private static final long serialVersionUID = 1L;
 
-    private Map<String, Object> session;
-
+    private LoginManager loginManager;
     private UserDao userDao;
 
     private Registration registration;
+
+    protected LoginManager getLoginManager() {
+        if (loginManager == null) {
+            loginManager = new LoginManager();
+        }
+        return loginManager;
+    }
 
     protected UserDao getUserDao() {
         if (userDao == null) {
             userDao = new UserDaoImpl();
         }
         return userDao;
-    }
-
-    public Map<String, Object> getSession() {
-        return session;
-    }
-
-    @Override
-    public void setSession(Map<String, Object> session) {
-        this.session = session;
     }
 
     public Registration getRegistration() {
@@ -50,16 +43,23 @@ public class RegisterUserAction extends ActionSupport implements SessionAware {
     }
 
     @Override
-    public String execute() {
-        if (getSession().containsKey(SessionAttribute.USER)) {
+    public String execute() throws Exception {
+        if (getLoginManager().isLoggedIn()) {
             return SUCCESS;
         }
-        if (getRegistration() == null) {
-            return INPUT;
-        }
+        return super.execute();
+    }
+
+    @Override
+    public String view() {
+        return INPUT;
+    }
+
+    @Override
+    public String process() {
         try {
             User user = getUserDao().register(getRegistration());
-            getSession().put(SessionAttribute.USER, user);
+            getLoginManager().login(user);
             return SUCCESS;
         } catch (SQLException ex) {
             // TODO: forward to 500 page
@@ -70,7 +70,7 @@ public class RegisterUserAction extends ActionSupport implements SessionAware {
 
     @Override
     public void validate() {
-        if (getRegistration() != null) {
+        if (isFormPresent() && getRegistration() != null) {
             validateUsername(getRegistration().getUsername());
             validatePassword(getRegistration().getPassword(), getRegistration().getConfirmedPassword());
         }

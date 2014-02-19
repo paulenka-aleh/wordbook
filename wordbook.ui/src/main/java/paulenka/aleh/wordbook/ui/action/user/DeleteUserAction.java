@@ -5,12 +5,11 @@ import java.sql.SQLException;
 import paulenka.aleh.wordbook.dao.UserDao;
 import paulenka.aleh.wordbook.dao.impl.UserDaoImpl;
 import paulenka.aleh.wordbook.data.User;
+import paulenka.aleh.wordbook.ui.action.common.ProcessFormAction;
 import paulenka.aleh.wordbook.ui.interceptor.security.Authorization;
 
-import com.opensymphony.xwork2.ActionSupport;
-
 @Authorization
-public class DeleteUserAction extends ActionSupport {
+public class DeleteUserAction extends ProcessFormAction {
 
     private static final long serialVersionUID = 1L;
 
@@ -34,7 +33,12 @@ public class DeleteUserAction extends ActionSupport {
     }
 
     @Override
-    public String execute() {
+    public String view() {
+        return INPUT;
+    }
+
+    @Override
+    public String process() {
         try {
             getUserDao().delete(getUser().getId());
             return SUCCESS;

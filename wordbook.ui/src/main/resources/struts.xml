@@ -53,12 +53,14 @@
 		</action>
 
 		<action name="list" class="paulenka.aleh.wordbook.ui.action.user.ListUserAction">
-			<result name="success">/jsp/user/list.jsp</result>
+			<result name="input">/jsp/user/list.jsp</result>
 		</action>
 		<action name="edit" class="paulenka.aleh.wordbook.ui.action.user.EditUserAction">
-			<result name="success">/jsp/user/edit.jsp</result>
+			<result name="input">/jsp/user/edit.jsp</result>
+			<result name="success" type="redirect">/user/list</result>
 		</action>
 		<action name="delete" class="paulenka.aleh.wordbook.ui.action.user.DeleteUserAction">
+			<result name="input" type="redirect">/user/list</result>
 			<result name="success" type="redirect">/user/list</result>
 		</action>
 	</package>

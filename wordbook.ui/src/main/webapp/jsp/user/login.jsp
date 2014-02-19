@@ -27,9 +27,11 @@
 
 					<s:actionerror />
 
-					<button type="submit" class="btn btn-lg btn-primary btn-block">
-						<s:text name="sign-in-form.sign-in-button" />
-					</button>
+					<div class="text-center">
+						<button type="submit" class="btn btn-lg btn-success">
+							<s:text name="sign-in-form.sign-in-button" />
+						</button>
+					</div>
 				</s:form>
 			</div>
 		</div>

@@ -32,9 +32,11 @@
 						<s:fielderror fieldName="registration.confirmedPassword" />
 					</div>
 
-					<button type="submit" class="btn btn-lg btn-primary btn-block">
-						<s:text name="sign-up-form.sign-up-button" />
-					</button>
+					<div class="text-right">
+						<button type="submit" class="btn btn-lg btn-primary">
+							<s:text name="sign-up-form.sign-up-button" />
+						</button>
+					</div>
 				</s:form>
 			</div>
 		</div>

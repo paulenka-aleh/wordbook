@@ -1,7 +1,8 @@
 package paulenka.aleh.wordbook.dao.impl;
 
 import java.sql.SQLException;
-import java.util.List;
+import java.util.EnumSet;
+import java.util.Set;
 
 import paulenka.aleh.wordbook.dao.RoleDao;
 import paulenka.aleh.wordbook.dao.mapper.RoleMapper;
@@ -22,7 +23,10 @@ public class RoleDaoImpl extends JdbcDaoTemplate implements RoleDao {
         return roleMapper;
     }
 
-    public List<Role> getUserRoles(int userId) throws SQLException {
-        return executeQuery(getRoleMapperMapper(), QUERY_GET_USERS_BY_ROLE, userId);
+    @Override
+    public Set<Role> getUserRoles(int userId) throws SQLException {
+        Set<Role> result = EnumSet.noneOf(Role.class);
+        result.addAll(executeQuery(getRoleMapperMapper(), QUERY_GET_USERS_BY_ROLE, userId));
+        return result;
     }
 }

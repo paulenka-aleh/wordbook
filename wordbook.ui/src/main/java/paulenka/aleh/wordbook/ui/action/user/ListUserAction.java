@@ -38,7 +38,7 @@ public class ListUserAction extends ActionSupport {
     public String execute() {
         try {
             setUsers(getUserDao().list());
-            return SUCCESS;
+            return INPUT;
         } catch (SQLException ex) {
             // TODO: Redirect to 500 page
             ex.printStackTrace();

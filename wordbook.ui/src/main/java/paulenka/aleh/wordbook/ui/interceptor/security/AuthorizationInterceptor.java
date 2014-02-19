@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -40,7 +41,7 @@ public class AuthorizationInterceptor extends AbstractInterceptor {
 
     protected boolean isUserAuthorizedForAction(ActionInvocation invocation) throws SQLException, NoSuchMethodException {
         List<Role> authorizedRoles = getAuthorizedRoles(invocation);
-        List<Role> userRoles = getRoleDao().getUserRoles(getAutenticatedUser(invocation).getId());
+        Set<Role> userRoles = getRoleDao().getUserRoles(getAutenticatedUser(invocation).getId());
 
         List<Role> authorizedToAction = new ArrayList<>(authorizedRoles);
         authorizedToAction.retainAll(userRoles);

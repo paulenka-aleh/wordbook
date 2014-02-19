@@ -52,6 +52,8 @@
 		};
 
 		var populateWordList = function(words) {
+			$this.empty();
+			
 			$this.append($.map(words, wrapWord).join(''));
 
 			$this.find('.list-group-item').each(function(index, a) {

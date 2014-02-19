@@ -39,6 +39,13 @@ public abstract class ProcessFormAction extends ActionSupport implements Servlet
         return result;
     }
 
+    @Override
+    public void validate() {
+        if (!(getActionErrors().isEmpty() && getFieldErrors().isEmpty())) {
+            view();
+        }
+    }
+
     public abstract String view();
 
     public abstract String process();

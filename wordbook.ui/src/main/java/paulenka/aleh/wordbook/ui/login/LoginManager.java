@@ -47,4 +47,8 @@ public class LoginManager {
     public void logout() {
         getSession().remove(SessionAttribute.USER);
     }
+
+    public User getUser() {
+        return (User) getSession().get(SessionAttribute.USER);
+    }
 }

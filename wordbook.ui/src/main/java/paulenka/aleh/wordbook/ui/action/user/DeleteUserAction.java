@@ -4,11 +4,12 @@ import java.sql.SQLException;
 
 import paulenka.aleh.wordbook.dao.UserDao;
 import paulenka.aleh.wordbook.dao.impl.UserDaoImpl;
+import paulenka.aleh.wordbook.data.Role;
 import paulenka.aleh.wordbook.data.User;
 import paulenka.aleh.wordbook.ui.action.common.ProcessFormAction;
 import paulenka.aleh.wordbook.ui.interceptor.security.Authorization;
 
-@Authorization
+@Authorization(roles = { Role.ADMINISTRATOR })
 public class DeleteUserAction extends ProcessFormAction {
 
     private static final long serialVersionUID = 1L;

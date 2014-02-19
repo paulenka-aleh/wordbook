@@ -20,4 +20,6 @@ public interface UserDao {
     public List<User> list() throws SQLException;
 
     public void delete(int id) throws SQLException;
+
+    public void updatePassword(int id, String password) throws SQLException;
 }

@@ -1,8 +1,10 @@
 package paulenka.aleh.wordbook.ui.action.user;
 
 import java.sql.SQLException;
-import java.util.EnumSet;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import paulenka.aleh.wordbook.dao.RoleDao;
 import paulenka.aleh.wordbook.dao.UserDao;
@@ -13,7 +15,7 @@ import paulenka.aleh.wordbook.data.User;
 import paulenka.aleh.wordbook.ui.action.common.ProcessFormAction;
 import paulenka.aleh.wordbook.ui.interceptor.security.Authorization;
 
-@Authorization
+@Authorization(roles = { Role.ADMINISTRATOR })
 public class EditUserAction extends ProcessFormAction {
 
     private static final long serialVersionUID = 1L;
@@ -22,12 +24,13 @@ public class EditUserAction extends ProcessFormAction {
     private RoleDao roleDao;
 
     private User user;
-    private Set<Role> roles;
-    private Set<Role> userRoles;
+    private Map<Role, Boolean> roles;
 
     private boolean changePassword;
     private String password;
     private String confirmedPassword;
+
+    private boolean success;
 
     protected UserDao getUserDao() {
         if (userDao == null) {
@@ -51,20 +54,12 @@ public class EditUserAction extends ProcessFormAction {
         this.user = user;
     }
 
-    public Set<Role> getRoles() {
+    public Map<Role, Boolean> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(Map<Role, Boolean> roles) {
         this.roles = roles;
-    }
-
-    public Set<Role> getUserRoles() {
-        return userRoles;
-    }
-
-    public void setUserRoles(Set<Role> roles) {
-        this.userRoles = roles;
     }
 
     public boolean isChangePassword() {
@@ -91,13 +86,27 @@ public class EditUserAction extends ProcessFormAction {
         this.confirmedPassword = confirmedPassword;
     }
 
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
     @Override
-    public String view() {
+    public String execute() throws Exception {
         try {
+            setSuccess(false);
             setUser(getUserDao().get(getUser().getId()));
-            setRoles(EnumSet.allOf(Role.class));
-            setUserRoles(getRoleDao().getUserRoles(getUser().getId()));
-            return INPUT;
+            if (getRoles() == null) {
+                setRoles(new TreeMap<Role, Boolean>());
+                Set<Role> userRoles = getRoleDao().getUserRoles(getUser().getId());
+                for (Role role : Role.values()) {
+                    getRoles().put(role, userRoles.contains(role));
+                }
+            }
+            return super.execute();
         } catch (SQLException ex) {
             // TODO: Redirect to 500 page
             ex.printStackTrace();
@@ -106,13 +115,59 @@ public class EditUserAction extends ProcessFormAction {
     }
 
     @Override
-    public String process() {
+    public String view() {
+        return INPUT;
+    }
 
-        return SUCCESS;
+    @Override
+    public String process() {
+        try {
+            processRoles();
+            processPassword();
+            setSuccess(true);
+            return SUCCESS;
+        } catch (SQLException ex) {
+            // TODO Auto-generated catch block
+            ex.printStackTrace();
+            return ERROR;
+        }
+    }
+
+    protected void processPassword() throws SQLException {
+        if (isChangePassword()) {
+            getUserDao().updatePassword(getUser().getId(), getPassword());
+        }
+    }
+
+    protected void processRoles() throws SQLException {
+        Set<Role> roles = new HashSet<Role>();
+        for (Role role : Role.values()) {
+            if (getRoles().get(role)) {
+                roles.add(role);
+            }
+        }
+        getRoleDao().assign(getUser().getId(), roles);
     }
 
     @Override
     public void validate() {
+        if (isFormPresent()) {
+            if (isChangePassword()) {
+                validatePassword(getPassword(), getConfirmedPassword());
+            }
+        }
+        super.validate();
+    }
 
+    protected void validatePassword(String password, String confirmedPassword) {
+        if (password == null || password.isEmpty()) {
+            addFieldError("password", getText("edit-form.error.password.empty"));
+        } else if (!password.matches("^[\\s\\S]{6,}$")) {
+            addFieldError("password", getText("edit-form.error.password.regex"));
+        } else if (confirmedPassword == null || confirmedPassword.isEmpty()) {
+            addFieldError("confirmedPassword", getText("edit-form.error.confirmed-password.empty"));
+        } else if (!password.equals(confirmedPassword)) {
+            addFieldError("confirmedPassword", getText("edit-form.error.confirmed-password.mismatch"));
+        }
     }
 }

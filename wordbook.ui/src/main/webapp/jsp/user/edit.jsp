@@ -7,6 +7,7 @@
 	<head>
 		<s:include value="/jsp/tile/head.jsp" />
 		<link rel="stylesheet" href="${root}/css/form.css" />
+		<script type="text/javascript" src="${root}/js/uesr-edit-password-panel.js"></script>
 		<title>
 			<s:text name="user-edit-page.title">
 				<s:param value="%{user.username}" />
@@ -18,6 +19,13 @@
 			<s:include value="/jsp/tile/header.jsp" />
 			<div class="container">
 				<s:form namespace="/user" action="%{'edit?user.id=' + user.id}" method="post" theme="bootstrap" cssClass="form">
+					<s:if test="%{success}">
+						<div class="alert alert-success alert-dismissable">
+							<button type="button" class="close" data-dismiss="alert">&times;</button>
+							<p><s:text name="edit-form.success" /></p>
+						</div>
+					</s:if>
+					
 					<h2 class="form-heading">
 						<s:text name="edit-form.form-title">
 							<s:param value="%{user.username}"></s:param>
@@ -27,10 +35,11 @@
 					<div class="panel panel-danger">
 						<div class="panel-heading"><s:text name="edit-form.edit-roles-title" /></div>
 						<div class="panel-body">
-							<s:iterator value="%{roles}" var="role">
+							<s:iterator value="%{roles}" var="entry">
+								<s:set value="#entry.key" var="role" />
 								<div class="checkbox">
-									<s:checkbox id="%{'role' + #role.roleId}" name="userRoles" value="%{userRoles.contains(role)}" disabled="%{#session.user.id == user.id}" />
-									<s:label for="%{'role' + #role.roleId}" value="%{getText('role.' + #role.roleId)}" />
+									<s:checkbox id="%{'roles.' + #role}" name="%{'roles.' + #role}" value="%{#entry.value}" disabled="%{#session.user.id == user.id}" />
+									<s:label for="%{'roles.' + #role}" value="%{getText('role.' + #role.roleId)}" />
 								</div>
 							</s:iterator>
 						</div>

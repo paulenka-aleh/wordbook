@@ -8,4 +8,6 @@ import paulenka.aleh.wordbook.data.Role;
 public interface RoleDao {
 
     public Set<Role> getUserRoles(int userId) throws SQLException;
+
+    public void assign(int userId, Set<Role> roles) throws SQLException;
 }

@@ -13,10 +13,16 @@ public abstract class JdbcDaoTemplate {
 
     protected Connection createConnection() throws SQLException {
         try {
-            return ConnectionManager.getInstance().getConnection();
+            Connection connection = ConnectionManager.getInstance().getConnection();
+            connection.setAutoCommit(true);
+            return connection;
         } catch (ClassNotFoundException | IOException ex) {
             throw new SQLException(ex);
         }
+    }
+
+    protected void closeConnection(Connection connection) throws SQLException {
+        connection.close();
     }
 
     protected void substituteArguments(PreparedStatement statement, Object... arguments) throws SQLException {
@@ -26,8 +32,9 @@ public abstract class JdbcDaoTemplate {
     }
 
     protected <T> List<T> executeQuery(JdbcEntityMapper<? extends T> mapper, String query, Object... arguments) throws SQLException {
-        try (Connection connection = createConnection()) {
-
+        Connection connection = null;
+        try {
+            connection = createConnection();
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 substituteArguments(statement, arguments);
 
@@ -41,6 +48,8 @@ public abstract class JdbcDaoTemplate {
                     return result;
                 }
             }
+        } finally {
+            closeConnection(connection);
         }
     }
 
@@ -50,16 +59,22 @@ public abstract class JdbcDaoTemplate {
     }
 
     protected void executeUpdate(String query, Object... arguments) throws SQLException {
-        try (Connection connection = createConnection()) {
+        Connection connection = null;
+        try {
+            connection = createConnection();
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 substituteArguments(statement, arguments);
                 statement.executeUpdate();
             }
+        } finally {
+            closeConnection(connection);
         }
     }
 
     protected int executeInsert(String query, Object... arguments) throws SQLException {
-        try (Connection connection = createConnection()) {
+        Connection connection = null;
+        try {
+            connection = createConnection();
             try (PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
                 substituteArguments(statement, arguments);
                 statement.executeUpdate();
@@ -69,6 +84,8 @@ public abstract class JdbcDaoTemplate {
                     return set.getInt(1);
                 }
             }
+        } finally {
+            closeConnection(connection);
         }
     }
 }

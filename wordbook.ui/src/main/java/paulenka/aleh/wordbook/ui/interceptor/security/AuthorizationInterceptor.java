@@ -15,7 +15,7 @@ import paulenka.aleh.wordbook.dao.RoleDao;
 import paulenka.aleh.wordbook.dao.impl.RoleDaoImpl;
 import paulenka.aleh.wordbook.data.Role;
 import paulenka.aleh.wordbook.data.User;
-import paulenka.aleh.wordbook.ui.constant.SessionAttribute;
+import paulenka.aleh.wordbook.ui.login.LoginManager;
 import paulenka.aleh.wordbook.ui.util.ActionAnnotationUtil;
 
 import com.opensymphony.xwork2.Action;
@@ -26,7 +26,15 @@ public class AuthorizationInterceptor extends AbstractInterceptor {
 
     private static final long serialVersionUID = 1L;
 
+    private LoginManager loginManager;
     private RoleDao roleDao;
+
+    protected LoginManager getLoginManager() {
+        if (loginManager == null) {
+            loginManager = new LoginManager();
+        }
+        return loginManager;
+    }
 
     protected RoleDao getRoleDao() {
         if (roleDao == null) {
@@ -36,7 +44,7 @@ public class AuthorizationInterceptor extends AbstractInterceptor {
     }
 
     protected User getAutenticatedUser(ActionInvocation invocation) {
-        return (User) invocation.getInvocationContext().getSession().get(SessionAttribute.USER);
+        return getLoginManager().getUser();
     }
 
     protected boolean isUserAuthorizedForAction(ActionInvocation invocation) throws SQLException, NoSuchMethodException {

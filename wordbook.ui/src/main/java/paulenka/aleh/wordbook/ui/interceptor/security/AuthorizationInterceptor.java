@@ -14,7 +14,7 @@ import org.apache.struts2.ServletActionContext;
 import paulenka.aleh.wordbook.data.Role;
 import paulenka.aleh.wordbook.data.User;
 import paulenka.aleh.wordbook.ui.login.LoginManager;
-import paulenka.aleh.wordbook.ui.util.ActionAnnotationUtil;
+import paulenka.aleh.wordbook.ui.util.ActioninvocationUtil;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionInvocation;
@@ -48,8 +48,8 @@ public class AuthorizationInterceptor extends AbstractInterceptor {
     }
 
     protected boolean isAuthenticationRequired(ActionInvocation invocation) throws NoSuchMethodException {
-        Authorization actionClassAnnotation = ActionAnnotationUtil.getActionClassAnnotation(invocation, Authorization.class);
-        Authorization actionMethodAnnotation = ActionAnnotationUtil.getActionMethodAnnotation(invocation, Authorization.class);
+        Authorization actionClassAnnotation = ActioninvocationUtil.getActionClassAnnotation(invocation, Authorization.class);
+        Authorization actionMethodAnnotation = ActioninvocationUtil.getActionMethodAnnotation(invocation, Authorization.class);
 
         return actionClassAnnotation != null || actionMethodAnnotation != null;
     }
@@ -65,8 +65,8 @@ public class AuthorizationInterceptor extends AbstractInterceptor {
     }
 
     protected List<Role> getAuthorizedRoles(ActionInvocation invocation) throws NoSuchMethodException {
-        Authorization actionClassAnnotation = ActionAnnotationUtil.getActionClassAnnotation(invocation, Authorization.class);
-        Authorization actionMethodAnnotation = ActionAnnotationUtil.getActionMethodAnnotation(invocation, Authorization.class);
+        Authorization actionClassAnnotation = ActioninvocationUtil.getActionClassAnnotation(invocation, Authorization.class);
+        Authorization actionMethodAnnotation = ActioninvocationUtil.getActionMethodAnnotation(invocation, Authorization.class);
 
         if (actionMethodAnnotation != null) {
             return Arrays.asList(actionMethodAnnotation.roles());

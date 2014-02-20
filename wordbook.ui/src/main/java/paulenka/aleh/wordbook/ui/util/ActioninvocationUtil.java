@@ -4,9 +4,9 @@ import java.lang.annotation.Annotation;
 
 import com.opensymphony.xwork2.ActionInvocation;
 
-public final class ActionAnnotationUtil {
+public final class ActioninvocationUtil {
 
-    private ActionAnnotationUtil() {
+    private ActioninvocationUtil() {
     }
 
     public static <T extends Annotation> T getActionClassAnnotation(ActionInvocation invocation, Class<T> annotation) {
@@ -21,7 +21,7 @@ public final class ActionAnnotationUtil {
         }
     }
 
-    private static Class<?> getActionClass(ActionInvocation invocation) {
+    public static Class<?> getActionClass(ActionInvocation invocation) {
         return invocation.getAction().getClass();
     }
 }

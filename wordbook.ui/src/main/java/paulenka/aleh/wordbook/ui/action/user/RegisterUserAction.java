@@ -1,10 +1,14 @@
 package paulenka.aleh.wordbook.ui.action.user;
 
 import java.sql.SQLException;
+import java.util.Collections;
 
+import paulenka.aleh.wordbook.dao.RoleDao;
 import paulenka.aleh.wordbook.dao.UserDao;
+import paulenka.aleh.wordbook.dao.impl.RoleDaoImpl;
 import paulenka.aleh.wordbook.dao.impl.UserDaoImpl;
 import paulenka.aleh.wordbook.data.Registration;
+import paulenka.aleh.wordbook.data.Role;
 import paulenka.aleh.wordbook.data.User;
 import paulenka.aleh.wordbook.ui.action.common.ProcessFormAction;
 import paulenka.aleh.wordbook.ui.interceptor.back.BackResultAction;
@@ -17,6 +21,7 @@ public class RegisterUserAction extends ProcessFormAction {
 
     private LoginManager loginManager;
     private UserDao userDao;
+    private RoleDao roleDao;
 
     private Registration registration;
 
@@ -32,6 +37,13 @@ public class RegisterUserAction extends ProcessFormAction {
             userDao = new UserDaoImpl();
         }
         return userDao;
+    }
+
+    protected RoleDao getRoleDao() {
+        if (roleDao == null) {
+            roleDao = new RoleDaoImpl();
+        }
+        return roleDao;
     }
 
     public Registration getRegistration() {
@@ -59,6 +71,7 @@ public class RegisterUserAction extends ProcessFormAction {
     public String process() {
         try {
             User user = getUserDao().register(getRegistration());
+            getRoleDao().assign(user.getId(), Collections.singleton(Role.USER));
             getLoginManager().login(user);
             return SUCCESS;
         } catch (SQLException ex) {

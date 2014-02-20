@@ -80,13 +80,11 @@
 			</result>
 		</action>
 
-		<!-- class="paulenka.aleh.wordbook.ui.action.wordbook.EditWordAction"  -->
-		<action name="edit">
-			<!-- <result name="input">/jsp/wordbook/edit.jsp</result> -->
+		<action name="edit" class="paulenka.aleh.wordbook.ui.action.wordbook.EditWordAction">
+			<result name="input">/jsp/wordbook/edit.jsp</result>
 			<result name="success" type="redirect">/wordbook/</result>
 		</action>
-		<!-- class="paulenka.aleh.wordbook.ui.action.wordbook.DeleteWordAction"  -->
-		<action name="delete">
+		<action name="delete" class="paulenka.aleh.wordbook.ui.action.wordbook.DeleteWordAction">
 			<result name="success" type="redirect">/wordbook/</result>
 		</action>
 	</package>

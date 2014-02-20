@@ -54,8 +54,6 @@ public class WordListAction extends ActionSupport {
             setListResponse(new WordListResponse(list, size));
             return SUCCESS;
         } catch (SQLException ex) {
-            // TODO Auto-generated catch block
-            ex.printStackTrace();
             return ERROR;
         }
     }

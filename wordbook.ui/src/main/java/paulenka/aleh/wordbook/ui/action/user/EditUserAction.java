@@ -108,8 +108,6 @@ public class EditUserAction extends ProcessFormAction {
             }
             return super.execute();
         } catch (SQLException ex) {
-            // TODO: Redirect to 500 page
-            ex.printStackTrace();
             return ERROR;
         }
     }
@@ -127,8 +125,6 @@ public class EditUserAction extends ProcessFormAction {
             setSuccess(true);
             return SUCCESS;
         } catch (SQLException ex) {
-            // TODO Auto-generated catch block
-            ex.printStackTrace();
             return ERROR;
         }
     }

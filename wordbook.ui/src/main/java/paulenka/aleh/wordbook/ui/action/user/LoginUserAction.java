@@ -58,8 +58,6 @@ public class LoginUserAction extends ProcessFormAction {
                 return INPUT;
             }
         } catch (SQLException ex) {
-            // TODO: Redirect to 500 page
-            ex.printStackTrace();
             return ERROR;
         }
     }

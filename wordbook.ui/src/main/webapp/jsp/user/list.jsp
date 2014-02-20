@@ -62,20 +62,20 @@
 										<span class="glyphicon glyphicon-remove"></span>&nbsp;
 										<span><s:text name="user-list.delete" /></span>
 									</button>
-									</s:if>
-									<s:else>
-										<button type="button" data-toggle="modal" data-target="#delete-confirm" data-user-id="${user.id}" data-user-name="${user.username}" class="btn btn-sm btn-danger">
-											<span class="glyphicon glyphicon-remove"></span>&nbsp;
-											<span><s:text name="user-list.delete" /></span>
-										</button>
-									</s:else>
-								</div>
-								<div style="clear: both;"></div>
+								</s:if>
+								<s:else>
+									<button type="button" data-toggle="modal" data-target="#delete-confirm" data-user-id="${user.id}" data-user-name="${user.username}" class="btn btn-sm btn-danger">
+										<span class="glyphicon glyphicon-remove"></span>&nbsp;
+										<span><s:text name="user-list.delete" /></span>
+									</button>
+								</s:else>
 							</div>
-						</s:iterator>
-					</div>
+							<div style="clear: both;"></div>
+						</div>
+					</s:iterator>
 				</div>
 			</div>
-			<s:include value="/jsp/tile/footer.jsp" />
-		</body>
-	</html>
+		</div>
+		<s:include value="/jsp/tile/footer.jsp" />
+	</body>
+</html>

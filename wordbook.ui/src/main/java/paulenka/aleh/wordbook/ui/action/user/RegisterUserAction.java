@@ -62,8 +62,6 @@ public class RegisterUserAction extends ProcessFormAction {
             getLoginManager().login(user);
             return SUCCESS;
         } catch (SQLException ex) {
-            // TODO: forward to 500 page
-            ex.printStackTrace();
             return ERROR;
         }
     }
@@ -86,7 +84,6 @@ public class RegisterUserAction extends ProcessFormAction {
                 addFieldError("registration.username", getText("sign-up-form.error.username.already-exists"));
             }
         } catch (SQLException ex) {
-            // TODO: forward to 500 page
             addActionError(ex.getMessage());
             ex.printStackTrace();
         }

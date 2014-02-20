@@ -1,0 +1,19 @@
+.box {
+	padding: 10px;
+}
+
+.server {
+	background: #fedada;
+}
+
+.server .box {
+	background: linear-gradient(to top, #fedada, #f14646);
+}
+
+.client {
+	background: #fefcea;
+}
+
+.client .box {
+	background: linear-gradient(to top, #fefcea, #f1da36);
+}

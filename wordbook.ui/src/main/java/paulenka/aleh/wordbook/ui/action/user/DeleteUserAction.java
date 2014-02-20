@@ -44,8 +44,6 @@ public class DeleteUserAction extends ProcessFormAction {
             getUserDao().delete(getUser().getId());
             return SUCCESS;
         } catch (SQLException ex) {
-            // TODO: Redirect to 500 page
-            ex.printStackTrace();
             return ERROR;
         }
     }

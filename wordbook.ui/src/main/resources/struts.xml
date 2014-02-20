@@ -4,8 +4,6 @@
 <struts>
 	<constant name="struts.action.extension" value=",html" />
 
-	<constant name="struts.devMode" value="true" />
-
 	<package name="default" namespace="" extends="json-default">
 		<interceptors>
 			<interceptor name="back" class="paulenka.aleh.wordbook.ui.interceptor.back.BackInterceptor" />
@@ -14,6 +12,7 @@
 
 			<interceptor-stack name="wordbookStack">
 				<interceptor-ref name="defaultStack" />
+
 				<interceptor-ref name="back" />
 				<interceptor-ref name="authentication" />
 				<interceptor-ref name="authoriztion" />
@@ -24,6 +23,7 @@
 
 		<global-results>
 			<result name="login" type="redirect">/user/login</result>
+			<result name="error">/jsp/error/500.jsp</result>
 		</global-results>
 	</package>
 

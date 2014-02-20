@@ -40,8 +40,6 @@ public class WordExplanationAction extends ActionSupport {
             setWord(getWordDao().get(getWord().getId()));
             return SUCCESS;
         } catch (SQLException ex) {
-            // TODO Auto-generated catch block
-            ex.printStackTrace();
             return ERROR;
         }
     }

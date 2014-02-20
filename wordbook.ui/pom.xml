@@ -55,11 +55,11 @@
 				<version>9.0.0.v20130308</version>
 				<configuration>
 					<webApp>
-						<contextPath>/wordbook-struts</contextPath>
+						<contextPath>/wordbook</contextPath>
 					</webApp>
 				</configuration>
 			</plugin>
 		</plugins>
-		<finalName>wordbook-struts</finalName>
+		<finalName>wordbook</finalName>
 	</build>
 </project>

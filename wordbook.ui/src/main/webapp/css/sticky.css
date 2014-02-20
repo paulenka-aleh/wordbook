@@ -7,6 +7,8 @@ html, body {
 	height: auto;
 	margin: 0 auto -60px;
 	padding: 0 0 60px;
+	
+	background: url(../image/background.png) 100px 100px no-repeat, linear-gradient(to right, #ffffff, #dfdfdf) left top no-repeat;
 }
 
 #footer {

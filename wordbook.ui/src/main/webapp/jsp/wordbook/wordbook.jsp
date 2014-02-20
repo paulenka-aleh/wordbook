@@ -10,8 +10,6 @@
 		<script type="text/javascript" src="${root}/js/wordbook.js"></script>
 		<script type="text/javascript">
 			$(function() {
-				$('#word-list-wrap').fill();
-
 				$('#word-list').wordList({
 					listUrl : '${root}/wordbook/list',
 					explanationUrl : '${root}/wordbook/explanation',
@@ -24,6 +22,34 @@
 		<title><s:text name="wordbook-page.title" /></title>
 	</head>
 	<body>
+		<div id="delete-confirm" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content panel-danger">
+					<div class="modal-header panel-heading">
+						<h4 class="modal-title"><s:text name="delete-confirm.title" /></h4>
+					</div>
+					<div class="modal-body">
+						<p id="delete-confirm-message">
+							<s:text name="delete-confirm.message" />
+						</p>
+					</div>
+					<div class="modal-footer">
+						<s:form namespace="/wordbook" action="delete" method="post">
+							<a class="btn btn-default" data-dismiss="modal">
+								<span class="glyphicon glyphicon-circle-arrow-left"></span>&nbsp;
+								<span><s:text name="delete-confirm.cancel" /></span>
+							</a>
+							<button type="submit" class="btn btn-danger">
+								<s:hidden name="word.id" id="delete-confirm-id" />
+								<span class="glyphicon glyphicon-remove"></span>&nbsp;
+								<span><s:text name="delete-confirm.delete" /></span>
+							</button>
+						</s:form>
+					</div>
+				</div>
+			</div>
+		</div>
+	
 		<div id="wrap" class="full-height">
 			<s:include value="/jsp/tile/header.jsp" />
 			<div class="full-height container padding">
@@ -50,8 +76,12 @@
 						<div class="explanation-header">
 							<span class="word"></span>
 							<div class="pull-right">
-								<s:a class="edit-word-link" namespace="/wordbook" action="edit"><span class="glyphicon glyphicon-edit"></span></s:a>
-								<s:a class="remove-word-link" namespace="/wordbook" action="delete"><span class="glyphicon glyphicon-remove"></span></s:a>
+								<s:a namespace="/wordbook" action="edit" class="edit-word-link">
+									<span class="glyphicon glyphicon-edit"></span>
+								</s:a>
+								<a data-toggle="modal" data-target="#delete-confirm" class="delete-word-link">
+									<span class="glyphicon glyphicon-remove"></span>
+								</a>
 							</div>
 						</div>
 						<div class="word-explanation"></div>

@@ -17,9 +17,6 @@
 		var $explanationHeader = $explanationArea.find('.explanation-header');
 		var $wordheader = $explanationHeader.find('.word');
 		var activeId = 0;
-		
-		var editWordLink = $explanationArea.find('.edit-word-link');
-		var removeWordLink = $explanationArea.find('.remove-word-link');
 
 		var updating = false;
 
@@ -135,3 +132,17 @@
 		return this;
 	};
 })(jQuery);
+
+$(function() {
+	$('#word-list-wrap').fill();
+
+	var message = $('#delete-confirm-message').text();
+
+	$('#delete-confirm').on('show.bs.modal', function () {
+		var id = $('#word-list .active').attr('data-word-id');
+		var word = $('#explanation-area .word').text();
+
+		$('#delete-confirm-message').text(message.format(word));
+		$('#delete-confirm-id').val(id);
+	});
+});

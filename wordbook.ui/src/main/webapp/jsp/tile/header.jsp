@@ -17,16 +17,20 @@
 			</div>
 			<div id="navbar-collapse" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li>
-						<s:a namespace="/wordbook" action="">
-							<s:text name="navigation.wordbook" />
-						</s:a>
-					</li>
-					<li>
-						<s:a namespace="/user" action="list">
-							<s:text name="navigation.users" />
-						</s:a>
-					</li>
+					<s:if test="%{(#session.roles != null) && ((#session.roles.contains(@paulenka.aleh.wordbook.data.Role@USER)) || (#session.roles.contains(@paulenka.aleh.wordbook.data.Role@MODERATOR)))}">
+						<li>
+							<s:a namespace="/wordbook" action="">
+								<s:text name="navigation.wordbook" />
+							</s:a>
+						</li>
+					</s:if>
+					<s:if test="%{(#session.roles != null) && (#session.roles.contains(@paulenka.aleh.wordbook.data.Role@ADMINISTRATOR))}">
+						<li>
+							<s:a namespace="/user" action="list">
+								<s:text name="navigation.users" />
+							</s:a>
+						</li>
+					</s:if>
 					<li>
 						<s:a namespace="/locale" action="change-locale">
 							<s:param name="language">be</s:param>

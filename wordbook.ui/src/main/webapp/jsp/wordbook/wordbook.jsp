@@ -77,14 +77,16 @@
 					<div id="explanation-area" class="full-height">
 						<div class="explanation-header">
 							<span class="word"></span>
-							<div class="pull-right">
-								<s:a namespace="/wordbook" action="edit" cssClass="edit-word-link">
-									<span class="glyphicon glyphicon-edit"></span>
-								</s:a>
-								<a data-toggle="modal" data-target="#delete-confirm">
-									<span class="glyphicon glyphicon-remove"></span>
-								</a>
-							</div>
+							<s:if test="%{(#session.roles != null) && (#session.roles.contains(@paulenka.aleh.wordbook.data.Role@MODERATOR))}">
+								<div class="pull-right">
+									<s:a namespace="/wordbook" action="edit" cssClass="edit-word-link">
+										<span class="glyphicon glyphicon-edit"></span>
+									</s:a>
+									<a data-toggle="modal" data-target="#delete-confirm">
+										<span class="glyphicon glyphicon-remove"></span>
+									</a>
+								</div>
+							</s:if>
 						</div>
 						<div class="word-explanation"></div>
 					</div>

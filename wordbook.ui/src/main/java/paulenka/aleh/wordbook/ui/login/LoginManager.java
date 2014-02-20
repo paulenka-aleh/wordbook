@@ -1,6 +1,7 @@
 package paulenka.aleh.wordbook.ui.login;
 
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
@@ -48,8 +49,9 @@ public class LoginManager {
         }
     }
 
-    public void login(User user) {
+    public void login(User user) throws SQLException {
         getSession().put(SessionAttribute.USER, user);
+        getSession().put(SessionAttribute.ROLES, getRoleDao().getUserRoles(getUser().getId()));
     }
 
     public boolean isLoggedIn() {
@@ -57,6 +59,7 @@ public class LoginManager {
     }
 
     public void logout() {
+        getSession().remove(SessionAttribute.ROLES);
         getSession().remove(SessionAttribute.USER);
     }
 
@@ -66,11 +69,8 @@ public class LoginManager {
 
     @SuppressWarnings("unchecked")
     public Set<Role> getRoles() throws SQLException {
-        if (!isLoggedIn()) {
-            return null;
-        }
-        if (!getSession().containsKey(SessionAttribute.ROLES)) {
-            getSession().put(SessionAttribute.ROLES, getRoleDao().getUserRoles(getUser().getId()));
+        if (!isLoggedIn() || !getSession().containsKey(SessionAttribute.ROLES)) {
+            return Collections.emptySet();
         }
         return (Set<Role>) getSession().get(SessionAttribute.ROLES);
     }

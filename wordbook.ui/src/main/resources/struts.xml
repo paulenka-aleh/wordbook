@@ -22,6 +22,9 @@
 		<default-interceptor-ref name="wordbookStack"></default-interceptor-ref>
 
 		<global-results>
+			<result name="ajax-login" type="json">
+				<param name="root">login</param>
+			</result>
 			<result name="login" type="redirect">/user/login</result>
 			<result name="error">/jsp/error/500.jsp</result>
 		</global-results>

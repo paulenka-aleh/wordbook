@@ -1,7 +1,7 @@
 (function($) {
 	$.fn.wordList = function(options) {
 		var page = 50;
-		
+
 		var $this = this;
 		var $filter = $(options.filter);
 
@@ -17,18 +17,14 @@
 		var $explanationHeader = $explanationArea.find('.explanation-header');
 		var $wordheader = $explanationHeader.find('.word');
 		var activeId = 0;
-		
+
 		var $editWordLink = $explanationArea.find('.edit-word-link');
 		var editWordUrl = $editWordLink.attr('href');
 
 		var updating = false;
 
 		var createRequest = function() {
-			return {
-				'listRequest.filter' : $filter.val(),
-				'listRequest.size' : page,
-				'listRequest.page' : $pager.attr('data-page-index')
-			};
+			return { 'listRequest.filter' : $filter.val(), 'listRequest.size' : page, 'listRequest.page' : $pager.attr('data-page-index') };
 		};
 
 		var wrapWord = function(word) {
@@ -41,12 +37,12 @@
 				$a.toggleClass('active', $a.is(active));
 			});
 		};
-		
+
 		var populateExplanation = function(word) {
 			$editWordLink.attr('href', editWordUrl + '?word.id=' + word.id);
 			$wordheader.empty().append(word.word);
 			$explanation.empty().append(word.explanation);
-			
+
 			$explanationHeader.css('display', 'block');
 		};
 
@@ -57,15 +53,17 @@
 			activeId = $this.find('.active').attr('data-word-id');
 
 			if (activeId) {
-				$.post(options.explanationUrl, { 'word.id' : activeId }).done(populateExplanation).fail(function() {
-					alert("error");
+				$.post(options.explanationUrl, { 'word.id' : activeId }).done(function(response) {
+					populateExplanation(response);
+				}).fail(function() {
+
 				});
 			}
 		};
 
 		var populateWordList = function(words) {
 			$this.empty();
-			
+
 			$this.append($.map(words, wrapWord).join(''));
 
 			$this.find('.list-group-item').each(function(index, a) {
@@ -100,8 +98,10 @@
 			updating = true;
 			$this.empty();
 
-			$.post(options.listUrl, createRequest()).done(populate).fail(function() {
-				alert("error");
+			$.post(options.listUrl, createRequest()).done(function(response) {
+				populate(response);
+			}).fail(function() {
+
 			}).always(function() {
 				updating = false;
 			});
@@ -143,7 +143,7 @@ $(function() {
 
 	var message = $('#delete-confirm-message').text();
 
-	$('#delete-confirm').on('show.bs.modal', function () {
+	$('#delete-confirm').on('show.bs.modal', function() {
 		var id = $('#word-list .active').attr('data-word-id');
 		var word = $('#explanation-area .word').text();
 

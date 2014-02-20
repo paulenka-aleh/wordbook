@@ -12,6 +12,10 @@ public class AuthenticationInterceptor extends AbstractInterceptor {
 
     private static final long serialVersionUID = 1L;
 
+    private static final String AJAX_LOGIN = "ajax-login";
+    private static final String AJAX_LOGIN_ATTRIBUTE = "login";
+    private static final Object AJAX_LOGIN_INDICATOR = "login";
+
     private LoginManager loginManager;
 
     protected LoginManager getLoginManager() {
@@ -35,7 +39,12 @@ public class AuthenticationInterceptor extends AbstractInterceptor {
     @Override
     public String intercept(ActionInvocation invocation) throws Exception {
         if (isAuthenticationRequired(invocation) && getAutenticatedUser(invocation) == null) {
-            return Action.LOGIN;
+            if (ActionAnnotationUtil.getActionClassAnnotation(invocation, JsonActionResult.class) != null) {
+                invocation.getInvocationContext().getValueStack().set(AJAX_LOGIN_ATTRIBUTE, AJAX_LOGIN_INDICATOR);
+                return AJAX_LOGIN;
+            } else {
+                return Action.LOGIN;
+            }
         } else {
             return invocation.invoke();
         }

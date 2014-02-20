@@ -10,6 +10,8 @@
 		<script type="text/javascript" src="${root}/js/wordbook.js"></script>
 		<script type="text/javascript">
 			$(function() {
+				$.login = '${root}/user/login';
+
 				$('#word-list').wordList({
 					listUrl : '${root}/wordbook/list',
 					explanationUrl : '${root}/wordbook/explanation',

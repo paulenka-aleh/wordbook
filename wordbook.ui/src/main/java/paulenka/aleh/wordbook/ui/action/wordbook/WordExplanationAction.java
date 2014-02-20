@@ -7,9 +7,11 @@ import paulenka.aleh.wordbook.dao.impl.WordDaoImpl;
 import paulenka.aleh.wordbook.data.Role;
 import paulenka.aleh.wordbook.data.Word;
 import paulenka.aleh.wordbook.ui.interceptor.security.Authorization;
+import paulenka.aleh.wordbook.ui.interceptor.security.JsonActionResult;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+@JsonActionResult
 @Authorization(roles = { Role.MODERATOR, Role.USER })
 public class WordExplanationAction extends ActionSupport {
 

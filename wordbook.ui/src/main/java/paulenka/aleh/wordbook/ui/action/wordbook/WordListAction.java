@@ -10,9 +10,11 @@ import paulenka.aleh.wordbook.data.Word;
 import paulenka.aleh.wordbook.ui.data.WordListRequest;
 import paulenka.aleh.wordbook.ui.data.WordListResponse;
 import paulenka.aleh.wordbook.ui.interceptor.security.Authorization;
+import paulenka.aleh.wordbook.ui.interceptor.security.JsonActionResult;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+@JsonActionResult
 @Authorization(roles = { Role.MODERATOR, Role.USER })
 public class WordListAction extends ActionSupport {
 

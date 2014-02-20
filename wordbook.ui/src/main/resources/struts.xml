@@ -45,22 +45,22 @@
 	<package name="user" namespace="/user" extends="default">
 		<action name="login" class="paulenka.aleh.wordbook.ui.action.user.LoginUserAction">
 			<result name="success" type="redirect">${back}</result>
-			<result name="input">/jsp/user/login.jsp</result>
+			<result name="input">/jsp/user/user-login.jsp</result>
 		</action>
 		<action name="register" class="paulenka.aleh.wordbook.ui.action.user.RegisterUserAction">
 			<result name="success" type="redirect">${back}</result>
-			<result name="input">/jsp/user/register.jsp</result>
+			<result name="input">/jsp/user/user-register.jsp</result>
 		</action>
 		<action name="logout" class="paulenka.aleh.wordbook.ui.action.user.LogoutUserAction">
 			<result name="success" type="redirect">${back}</result>
 		</action>
 
 		<action name="list" class="paulenka.aleh.wordbook.ui.action.user.ListUserAction">
-			<result name="input">/jsp/user/list.jsp</result>
+			<result name="input">/jsp/user/user-list.jsp</result>
 		</action>
 		<action name="edit" class="paulenka.aleh.wordbook.ui.action.user.EditUserAction">
-			<result name="input">/jsp/user/edit.jsp</result>
-			<result name="success">/jsp/user/edit.jsp</result>
+			<result name="input">/jsp/user/user-edit.jsp</result>
+			<result name="success">/jsp/user/user-edit.jsp</result>
 		</action>
 		<action name="delete" class="paulenka.aleh.wordbook.ui.action.user.DeleteUserAction">
 			<result name="input" type="redirect">/user/list</result>
@@ -84,8 +84,8 @@
 		</action>
 
 		<action name="edit" class="paulenka.aleh.wordbook.ui.action.wordbook.EditWordAction">
-			<result name="input">/jsp/wordbook/edit.jsp</result>
-			<result name="success">/jsp/wordbook/edit.jsp</result>
+			<result name="input">/jsp/wordbook/wordbook-edit.jsp</result>
+			<result name="success">/jsp/wordbook/wordbook-edit.jsp</result>
 		</action>
 		<action name="delete" class="paulenka.aleh.wordbook.ui.action.wordbook.DeleteWordAction">
 			<result name="success" type="redirect">/wordbook/</result>

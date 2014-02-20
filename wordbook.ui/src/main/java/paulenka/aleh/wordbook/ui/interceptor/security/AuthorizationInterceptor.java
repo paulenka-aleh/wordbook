@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 
-import paulenka.aleh.wordbook.dao.RoleDao;
-import paulenka.aleh.wordbook.dao.impl.RoleDaoImpl;
 import paulenka.aleh.wordbook.data.Role;
 import paulenka.aleh.wordbook.data.User;
 import paulenka.aleh.wordbook.ui.login.LoginManager;
@@ -27,7 +25,6 @@ public class AuthorizationInterceptor extends AbstractInterceptor {
     private static final long serialVersionUID = 1L;
 
     private LoginManager loginManager;
-    private RoleDao roleDao;
 
     protected LoginManager getLoginManager() {
         if (loginManager == null) {
@@ -36,20 +33,13 @@ public class AuthorizationInterceptor extends AbstractInterceptor {
         return loginManager;
     }
 
-    protected RoleDao getRoleDao() {
-        if (roleDao == null) {
-            roleDao = new RoleDaoImpl();
-        }
-        return roleDao;
-    }
-
     protected User getAutenticatedUser(ActionInvocation invocation) {
         return getLoginManager().getUser();
     }
 
     protected boolean isUserAuthorizedForAction(ActionInvocation invocation) throws SQLException, NoSuchMethodException {
         List<Role> authorizedRoles = getAuthorizedRoles(invocation);
-        Set<Role> userRoles = getRoleDao().getUserRoles(getAutenticatedUser(invocation).getId());
+        Set<Role> userRoles = getLoginManager().getRoles();
 
         List<Role> authorizedToAction = new ArrayList<>(authorizedRoles);
         authorizedToAction.retainAll(userRoles);

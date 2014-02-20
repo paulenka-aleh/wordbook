@@ -2,9 +2,11 @@ package paulenka.aleh.wordbook.ui.constant;
 
 public final class SessionAttribute {
 
-	private SessionAttribute() {
-	}
+    private SessionAttribute() {
+    }
 
-	public final static String USER = "user";
-	public final static String BACK_URI_STACK = "back";
+    public final static String USER = "user";
+    public final static String ROLES = "roles";
+
+    public final static String BACK_URI_STACK = "back";
 }

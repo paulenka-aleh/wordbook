@@ -22,7 +22,9 @@ public abstract class JdbcDaoTemplate {
     }
 
     protected void closeConnection(Connection connection) throws SQLException {
-        connection.close();
+        if (connection != null) {
+            connection.close();
+        }
     }
 
     protected void substituteArguments(PreparedStatement statement, Object... arguments) throws SQLException {

@@ -17,6 +17,9 @@
 		var $explanationHeader = $explanationArea.find('.explanation-header');
 		var $wordheader = $explanationHeader.find('.word');
 		var activeId = 0;
+		
+		var $editWordLink = $explanationArea.find('.edit-word-link');
+		var editWordUrl = $editWordLink.attr('href');
 
 		var updating = false;
 
@@ -40,8 +43,10 @@
 		};
 		
 		var populateExplanation = function(word) {
-			$explanation.empty().append(word.explanation);
+			$editWordLink.attr('href', editWordUrl + '?word.id=' + word.id);
 			$wordheader.empty().append(word.word);
+			$explanation.empty().append(word.explanation);
+			
 			$explanationHeader.css('display', 'block');
 		};
 

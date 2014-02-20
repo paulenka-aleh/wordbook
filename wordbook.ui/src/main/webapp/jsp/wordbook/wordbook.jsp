@@ -76,10 +76,10 @@
 						<div class="explanation-header">
 							<span class="word"></span>
 							<div class="pull-right">
-								<s:a namespace="/wordbook" action="edit" class="edit-word-link">
+								<s:a namespace="/wordbook" action="edit" cssClass="edit-word-link">
 									<span class="glyphicon glyphicon-edit"></span>
 								</s:a>
-								<a data-toggle="modal" data-target="#delete-confirm" class="delete-word-link">
+								<a data-toggle="modal" data-target="#delete-confirm">
 									<span class="glyphicon glyphicon-remove"></span>
 								</a>
 							</div>

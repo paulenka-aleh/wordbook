@@ -44,7 +44,7 @@
 			<div class="container">
 				<div class="list-group list">
 					<s:iterator value="%{users}" var="user">
-						<div class="list-group-item">
+						<div class="list-group-item clearfix">
 							<span class="pull-left">
 								<s:text name="user-list.item">
 									<s:param value="%{#user.id}"/>
@@ -70,7 +70,6 @@
 									</button>
 								</s:else>
 							</div>
-							<div style="clear: both;"></div>
 						</div>
 					</s:iterator>
 				</div>

@@ -25,7 +25,7 @@
 							<p><s:text name="edit-form.success" /></p>
 						</div>
 					</s:if>
-					
+
 					<h2 class="form-heading">
 						<s:text name="edit-form.form-title">
 							<s:param value="%{user.username}"></s:param>

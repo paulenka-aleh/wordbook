@@ -35,3 +35,9 @@
 .panel-heading .checkbox {
 	margin: 0;
 }
+
+textarea {
+	resize: vertical;
+	min-height: 200px;
+	max-height: 400px;
+}

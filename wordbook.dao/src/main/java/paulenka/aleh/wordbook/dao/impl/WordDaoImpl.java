@@ -19,7 +19,7 @@ public class WordDaoImpl extends JdbcDaoTemplate implements WordDao {
     private final static String QUERY_GET_WORD = "SELECT * FROM `" + WordTable.TABLE + "` WHERE `" + WordTable.ID + "` = ? LIMIT 1;";
     private final static String QUERY_CREATE_WORD = "INSERT INTO `" + WordTable.TABLE + "` (`" + WordTable.WORD + "`, `" + WordTable.EXPLANATION + "`) VALUES (?, ?);";
     private final static String QUERY_DELETE_WORD = "DELETE FROM `" + WordTable.TABLE + "` WHERE `" + WordTable.ID + "` = ? LIMIT 1;";
-    private final static String QUERY_UPDATE_WORD = "UPDATE `" + WordTable.TABLE + "` SET `" + WordTable.WORD + "` = ?, `" + WordTable.EXPLANATION + "` = ? WHERE `" + WordTable.ID + " = ? LIMIT 1;";
+    private final static String QUERY_UPDATE_WORD = "UPDATE `" + WordTable.TABLE + "` SET `" + WordTable.WORD + "` = ?, `" + WordTable.EXPLANATION + "` = ? WHERE `" + WordTable.ID + "` = ? LIMIT 1;";
 
     private WordMapper wordMapper;
     private WordListMapper wordListMapper;
@@ -70,7 +70,7 @@ public class WordDaoImpl extends JdbcDaoTemplate implements WordDao {
 
     @Override
     public void update(Word word) throws SQLException {
-        executeUpdate(QUERY_UPDATE_WORD, word.getId(), word.getWord(), word.getExplanation());
+        executeUpdate(QUERY_UPDATE_WORD, word.getWord(), word.getExplanation(), word.getId());
     }
 
     @Override

@@ -73,3 +73,7 @@
 	display: inline;
 	text-decoration: none;
 }
+
+#explanation-area .word-explanation {
+	text-align: justify;
+}

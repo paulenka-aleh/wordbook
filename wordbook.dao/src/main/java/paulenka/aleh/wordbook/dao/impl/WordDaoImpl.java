@@ -40,7 +40,7 @@ public class WordDaoImpl extends JdbcDaoTemplate implements WordDao {
 
     @Override
     public List<Word> list(String filter, int size, int page) throws SQLException {
-        return executeQuery(getWordListMapper(), QUERY_LIST_WORDS, "%" + filter + "%", page * size, size);
+        return executeQuery(getWordListMapper(), QUERY_LIST_WORDS, "%" + filter.replaceAll("\\%", "%%") + "%", page * size, size);
     }
 
     @Override

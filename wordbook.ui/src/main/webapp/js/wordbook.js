@@ -13,6 +13,7 @@
 		var total = 0;
 
 		var $explanation = $(options.explanation);
+		var $wordheader = $(options.wordHeader);
 		var activeId = 0;
 
 		var updating = false;
@@ -37,13 +38,15 @@
 		};
 		
 		var populateExplanation = function(word) {
-			$explanation.append(word.explanation);
+			$explanation.empty().append(word.explanation);
+			$wordheader.empty().append(word.word);
 		};
 
 		var updateExplanation = function() {
 			$explanation.empty();
+			$wordheader.empty();
 			activeId = $this.find('.active').attr('data-word-id');
-			
+
 			if (activeId) {
 				$.post(options.explanationUrl, { 'word.id' : activeId }).done(populateExplanation).fail(function() {
 					alert("error");
@@ -125,15 +128,3 @@
 		return this;
 	};
 })(jQuery);
-
-$(function() {
-	$('#word-list-wrap').fill();
-
-	$('#word-list').wordList({
-		listUrl : '/wordbook.ui/wordbook/list',
-		explanationUrl : '/wordbook.ui/wordbook/explanation',
-		filter : '#word-search',
-		pager : '#word-list-pager',
-		explanation : '#word-explanation'
-	});
-});

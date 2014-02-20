@@ -8,6 +8,20 @@
 		<s:include value="/jsp/tile/head.jsp" />
 		<link rel="stylesheet" href="${root}/css/wordbook.css" />
 		<script type="text/javascript" src="${root}/js/wordbook.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$('#word-list-wrap').fill();
+
+				$('#word-list').wordList({
+					listUrl : '${root}/wordbook/list',
+					explanationUrl : '${root}/wordbook/explanation',
+					filter : '#word-search',
+					pager : '#word-list-pager',
+					explanation : '#word-explanation',
+					wordHeader : '#word-header'
+				});
+			});
+		</script>
 		<title><s:text name="wordbook-page.title" /></title>
 	</head>
 	<body>
@@ -33,7 +47,10 @@
 					</div>
 				</div>
 				<div class="col-xs-8 full-height">
-					<div id="word-explanation" class="full-height"></div>
+					<div id="explanation-area" class="full-height">
+						<div id="word-header"></div>
+						<div id="word-explanation"></div>
+					</div>
 				</div>
 			</div>
 		</div>

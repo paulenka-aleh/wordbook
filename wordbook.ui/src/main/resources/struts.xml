@@ -87,6 +87,10 @@
 			<result name="input">/jsp/wordbook/wordbook-edit.jsp</result>
 			<result name="success">/jsp/wordbook/wordbook-edit.jsp</result>
 		</action>
+		<action name="create" class="paulenka.aleh.wordbook.ui.action.wordbook.CreateWordAction">
+			<result name="input">/jsp/wordbook/wordbook-create.jsp</result>
+			<result name="success">/jsp/wordbook/wordbook-create.jsp</result>
+		</action>
 		<action name="delete" class="paulenka.aleh.wordbook.ui.action.wordbook.DeleteWordAction">
 			<result name="success" type="redirect">/wordbook/</result>
 		</action>

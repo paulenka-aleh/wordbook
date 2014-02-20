@@ -24,6 +24,13 @@
 							</s:a>
 						</li>
 					</s:if>
+					<s:if test="%{(#session.roles != null) && (#session.roles.contains(@paulenka.aleh.wordbook.data.Role@MODERATOR))}">
+						<li>
+							<s:a namespace="/wordbook" action="create">
+								<span class="glyphicon glyphicon-plus"></span>
+							</s:a>
+						</li>
+					</s:if>
 					<s:if test="%{(#session.roles != null) && (#session.roles.contains(@paulenka.aleh.wordbook.data.Role@ADMINISTRATOR))}">
 						<li>
 							<s:a namespace="/user" action="list">

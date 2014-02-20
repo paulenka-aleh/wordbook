@@ -38,9 +38,13 @@ public class WordDaoImpl extends JdbcDaoTemplate implements WordDao {
         return wordListMapper;
     }
 
+    protected String escape(String query) {
+        return query.replaceAll("(\\%|\\_)", "\\\\$1");
+    }
+
     @Override
     public List<Word> list(String filter, int size, int page) throws SQLException {
-        return executeQuery(getWordListMapper(), QUERY_LIST_WORDS, "%" + filter.replaceAll("\\%", "%%") + "%", page * size, size);
+        return executeQuery(getWordListMapper(), QUERY_LIST_WORDS, "%" + escape(filter) + "%", page * size, size);
     }
 
     @Override

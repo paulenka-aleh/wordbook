@@ -17,8 +17,7 @@
 					explanationUrl : '${root}/wordbook/explanation',
 					filter : '#word-search',
 					pager : '#word-list-pager',
-					explanation : '#word-explanation',
-					wordHeader : '#word-header'
+					explanation : '#explanation-area'
 				});
 			});
 		</script>
@@ -48,8 +47,14 @@
 				</div>
 				<div class="col-xs-8 full-height">
 					<div id="explanation-area" class="full-height">
-						<div id="word-header"></div>
-						<div id="word-explanation"></div>
+						<div class="explanation-header">
+							<span class="word"></span>
+							<div class="pull-right">
+								<s:a class="edit-word-link" namespace="/wordbook" action="edit"><span class="glyphicon glyphicon-edit"></span></s:a>
+								<s:a class="remove-word-link" namespace="/wordbook" action="delete"><span class="glyphicon glyphicon-remove"></span></s:a>
+							</div>
+						</div>
+						<div class="word-explanation"></div>
 					</div>
 				</div>
 			</div>

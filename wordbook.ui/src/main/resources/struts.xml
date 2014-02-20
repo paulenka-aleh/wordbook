@@ -79,5 +79,15 @@
 				<param name="root">word</param>
 			</result>
 		</action>
+
+		<!-- class="paulenka.aleh.wordbook.ui.action.wordbook.EditWordAction"  -->
+		<action name="edit">
+			<!-- <result name="input">/jsp/wordbook/edit.jsp</result> -->
+			<result name="success" type="redirect">/wordbook/</result>
+		</action>
+		<!-- class="paulenka.aleh.wordbook.ui.action.wordbook.DeleteWordAction"  -->
+		<action name="delete">
+			<result name="success" type="redirect">/wordbook/</result>
+		</action>
 	</package>
 </struts>

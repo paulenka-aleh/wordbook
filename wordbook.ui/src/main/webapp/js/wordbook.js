@@ -12,9 +12,14 @@
 		var pagerMessage = $pagerLabel.text();
 		var total = 0;
 
-		var $explanation = $(options.explanation);
-		var $wordheader = $(options.wordHeader);
+		var $explanationArea = $(options.explanation);
+		var $explanation = $explanationArea.find('.word-explanation');
+		var $explanationHeader = $explanationArea.find('.explanation-header');
+		var $wordheader = $explanationHeader.find('.word');
 		var activeId = 0;
+		
+		var editWordLink = $explanationArea.find('.edit-word-link');
+		var removeWordLink = $explanationArea.find('.remove-word-link');
 
 		var updating = false;
 
@@ -40,11 +45,13 @@
 		var populateExplanation = function(word) {
 			$explanation.empty().append(word.explanation);
 			$wordheader.empty().append(word.word);
+			$explanationHeader.css('display', 'block');
 		};
 
 		var updateExplanation = function() {
 			$explanation.empty();
 			$wordheader.empty();
+			$explanationHeader.css('display', 'none');
 			activeId = $this.find('.active').attr('data-word-id');
 
 			if (activeId) {

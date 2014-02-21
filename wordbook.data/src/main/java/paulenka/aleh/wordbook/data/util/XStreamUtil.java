@@ -2,17 +2,15 @@ package paulenka.aleh.wordbook.data.util;
 
 import com.thoughtworks.xstream.XStream;
 
-public class XStreamUtil {
+public final class XStreamUtil {
 
-    private static XStream xStream;
+    private final static XStream X_STREAM = new XStream();;
+
+    private XStreamUtil() {
+    }
 
     public static XStream getXStream() {
-        if (xStream == null) {
-            xStream = new XStream();
-
-            // xStream.alias("WebCrawlerTask", WebCrawlerTask.class);
-        }
-        return xStream;
+        return X_STREAM;
     }
 
     public static String serialize(Object object) {

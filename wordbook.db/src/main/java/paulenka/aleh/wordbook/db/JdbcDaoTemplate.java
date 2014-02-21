@@ -1,6 +1,5 @@
 package paulenka.aleh.wordbook.db;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,16 +8,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class JdbcDaoTemplate {
+public class JdbcDaoTemplate {
 
     protected Connection createConnection() throws SQLException {
-        try {
-            Connection connection = ConnectionManager.getInstance().getConnection();
+        Connection connection = ConnectionManager.getInstance().getConnection();
+        if (connection != null) {
             connection.setAutoCommit(true);
-            return connection;
-        } catch (ClassNotFoundException | IOException ex) {
-            throw new SQLException(ex);
         }
+        return connection;
     }
 
     protected void closeConnection(Connection connection) throws SQLException {

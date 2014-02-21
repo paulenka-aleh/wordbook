@@ -7,22 +7,15 @@ import java.util.Properties;
 
 import org.apache.commons.dbcp.BasicDataSource;
 
-public class ConnectionManager {
-
-    private static ConnectionManager instance;
-
-    public static ConnectionManager getInstance() throws ClassNotFoundException, IOException {
-        if (instance == null) {
-            synchronized (ConnectionManager.class) {
-                if (instance == null) {
-                    instance = new ConnectionManager();
-                }
-            }
-        }
-        return instance;
-    }
+public final class ConnectionManager {
 
     private final static String DB_PROPERTY_FILE_NAME = "/db.properties";
+
+    private final static ConnectionManager instance = new ConnectionManager();
+
+    public static ConnectionManager getInstance() {
+        return instance;
+    }
 
     private BasicDataSource dataSource;
 
@@ -33,20 +26,24 @@ public class ConnectionManager {
         return dataSource;
     }
 
-    private ConnectionManager() throws IOException, ClassNotFoundException {
-        Properties properties = new Properties();
-        properties.load(ConnectionManager.class.getResourceAsStream(DB_PROPERTY_FILE_NAME));
+    private ConnectionManager() {
+        try {
+            Properties properties = new Properties();
 
-        Class.forName((properties.getProperty("driver")));
+            properties.load(ConnectionManager.class.getResourceAsStream(DB_PROPERTY_FILE_NAME));
 
-        getDataSource().setDriverClassName(properties.getProperty("driver"));
-        getDataSource().setUrl(properties.getProperty("url"));
-        getDataSource().setUsername(properties.getProperty("username"));
-        getDataSource().setPassword(properties.getProperty("password"));
+            Class.forName(properties.getProperty("driver"));
+
+            getDataSource().setDriverClassName(properties.getProperty("driver"));
+            getDataSource().setUrl(properties.getProperty("url"));
+            getDataSource().setUsername(properties.getProperty("username"));
+            getDataSource().setPassword(properties.getProperty("password"));
+        } catch (IOException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public Connection getConnection() throws SQLException {
         return getDataSource().getConnection();
     }
-
 }

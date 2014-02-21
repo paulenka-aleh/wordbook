@@ -17,14 +17,14 @@ import paulenka.aleh.wordbook.db.JdbcTransaction;
 
 public class UserDaoImpl extends JdbcDaoTemplate implements UserDao {
 
-    private final static String QUERY_LOGIN = "SELECT * FROM `" + UserTable.TABLE + "` WHERE `" + UserTable.USERNAME + "` = ? AND `" + UserTable.PASSWORD + "` = ? LIMIT 1;";
-    private final static String QUERY_IS_USER_EXISTS = "SELECT * FROM `" + UserTable.TABLE + "` WHERE `" + UserTable.USERNAME + "` = ? LIMIT 1;";
-    private final static String QUERY_CREATE_USER = "INSERT INTO `" + UserTable.TABLE + "` (`" + UserTable.USERNAME + "`, `" + UserTable.PASSWORD + "`) VALUES (?, ?);";
-    private final static String QUERY_UPDATE_PASSWORD = "UPDATE `" + UserTable.TABLE + "` SET `" + UserTable.PASSWORD + "` = ? WHERE `" + UserTable.ID + "` = ? LIMIT 1;";
-    private final static String QUERY_DELETE_USER = "DELETE FROM `" + UserTable.TABLE + "` WHERE `" + UserTable.ID + "` = ? LIMIT 1;";
-    private final static String QUERY_DELETE_USER_FROM_ROLES = "DELETE FROM `" + RoleTable.TABLE + "` WHERE `" + RoleTable.USER_ID + "` = ?;";
-    private final static String QUERY_GET_USER = "SELECT * FROM `" + UserTable.TABLE + "` WHERE `" + UserTable.ID + "` = ? LIMIT 1;";
-    private final static String QUERY_LIST_USERS = "SELECT * FROM `" + UserTable.TABLE + "`;";
+    private static final String QUERY_LOGIN = "SELECT * FROM `" + UserTable.TABLE + "` WHERE `" + UserTable.USERNAME + "` = ? AND `" + UserTable.PASSWORD + "` = ? LIMIT 1;";
+    private static final String QUERY_IS_USER_EXISTS = "SELECT * FROM `" + UserTable.TABLE + "` WHERE `" + UserTable.USERNAME + "` = ? LIMIT 1;";
+    private static final String QUERY_CREATE_USER = "INSERT INTO `" + UserTable.TABLE + "` (`" + UserTable.USERNAME + "`, `" + UserTable.PASSWORD + "`) VALUES (?, ?);";
+    private static final String QUERY_UPDATE_PASSWORD = "UPDATE `" + UserTable.TABLE + "` SET `" + UserTable.PASSWORD + "` = ? WHERE `" + UserTable.ID + "` = ? LIMIT 1;";
+    private static final String QUERY_DELETE_USER = "DELETE FROM `" + UserTable.TABLE + "` WHERE `" + UserTable.ID + "` = ? LIMIT 1;";
+    private static final String QUERY_DELETE_USER_FROM_ROLES = "DELETE FROM `" + RoleTable.TABLE + "` WHERE `" + RoleTable.USER_ID + "` = ?;";
+    private static final String QUERY_GET_USER = "SELECT * FROM `" + UserTable.TABLE + "` WHERE `" + UserTable.ID + "` = ? LIMIT 1;";
+    private static final String QUERY_LIST_USERS = "SELECT * FROM `" + UserTable.TABLE + "`;";
 
     private UserMapper userMapper;
 

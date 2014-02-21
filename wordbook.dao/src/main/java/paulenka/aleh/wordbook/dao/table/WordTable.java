@@ -2,11 +2,11 @@ package paulenka.aleh.wordbook.dao.table;
 
 public final class WordTable {
 
-    public final static String TABLE = "word";
+    public static final String TABLE = "word";
 
-    public final static String ID = "id";
-    public final static String WORD = "word";
-    public final static String EXPLANATION = "explanation";
+    public static final String ID = "id";
+    public static final String WORD = "word";
+    public static final String EXPLANATION = "explanation";
 
     private WordTable() {
     }

@@ -46,8 +46,8 @@ public class LoginUserAction extends ProcessFormAction {
 
     @Override
     public String process() {
-        if (getCredentials() == null || (getCredentials().getUsername() == null || getCredentials().getUsername().isEmpty()) &&
-                (getCredentials().getPassword() == null || getCredentials().getPassword().isEmpty())) {
+        if (getCredentials() == null || (getCredentials().getUsername() == null || getCredentials().getUsername().isEmpty())
+                && (getCredentials().getPassword() == null || getCredentials().getPassword().isEmpty())) {
             return INPUT;
         }
         try {

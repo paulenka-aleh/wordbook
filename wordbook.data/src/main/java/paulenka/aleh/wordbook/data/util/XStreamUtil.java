@@ -4,7 +4,7 @@ import com.thoughtworks.xstream.XStream;
 
 public final class XStreamUtil {
 
-    private final static XStream X_STREAM = new XStream();;
+    private static final XStream X_STREAM = new XStream();;
 
     private XStreamUtil() {
     }

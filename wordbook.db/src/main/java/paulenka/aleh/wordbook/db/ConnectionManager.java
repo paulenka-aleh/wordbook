@@ -9,9 +9,9 @@ import org.apache.commons.dbcp.BasicDataSource;
 
 public final class ConnectionManager {
 
-    private final static String DB_PROPERTY_FILE_NAME = "/db.properties";
+    private static final String DB_PROPERTY_FILE_NAME = "/db.properties";
 
-    private final static ConnectionManager instance = new ConnectionManager();
+    private static final ConnectionManager instance = new ConnectionManager();
 
     public static ConnectionManager getInstance() {
         return instance;

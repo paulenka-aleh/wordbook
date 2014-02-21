@@ -5,7 +5,7 @@ import java.security.NoSuchAlgorithmException;
 
 public final class HashingUtil {
 
-    private final static String DIGEST_NAME_SHA_2 = "SHA-256";
+    private static final String DIGEST_NAME_SHA_2 = "SHA-256";
 
     private HashingUtil() {
     }

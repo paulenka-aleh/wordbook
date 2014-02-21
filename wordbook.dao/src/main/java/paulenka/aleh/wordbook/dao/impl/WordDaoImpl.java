@@ -14,12 +14,12 @@ import paulenka.aleh.wordbook.db.JdbcEntityMapper;
 
 public class WordDaoImpl extends JdbcDaoTemplate implements WordDao {
 
-    private final static String QUERY_LIST_WORDS = "SELECT `" + WordTable.ID + "`, `" + WordTable.WORD + "` FROM `" + WordTable.TABLE + "` WHERE `" + WordTable.WORD + "` LIKE ? ORDER BY `" + WordTable.WORD + "` LIMIT ?, ?;";
-    private final static String QUERY_FETCH_SIZE_FOR_FILTER = "SELECT COUNT(`" + WordTable.ID + "`) FROM `" + WordTable.TABLE + "` WHERE `" + WordTable.WORD + "` LIKE ?;";
-    private final static String QUERY_GET_WORD = "SELECT * FROM `" + WordTable.TABLE + "` WHERE `" + WordTable.ID + "` = ? LIMIT 1;";
-    private final static String QUERY_CREATE_WORD = "INSERT INTO `" + WordTable.TABLE + "` (`" + WordTable.WORD + "`, `" + WordTable.EXPLANATION + "`) VALUES (?, ?);";
-    private final static String QUERY_DELETE_WORD = "DELETE FROM `" + WordTable.TABLE + "` WHERE `" + WordTable.ID + "` = ? LIMIT 1;";
-    private final static String QUERY_UPDATE_WORD = "UPDATE `" + WordTable.TABLE + "` SET `" + WordTable.WORD + "` = ?, `" + WordTable.EXPLANATION + "` = ? WHERE `" + WordTable.ID + "` = ? LIMIT 1;";
+    private static final String QUERY_LIST_WORDS = "SELECT `" + WordTable.ID + "`, `" + WordTable.WORD + "` FROM `" + WordTable.TABLE + "` WHERE `" + WordTable.WORD + "` LIKE ? ORDER BY `" + WordTable.WORD + "` LIMIT ?, ?;";
+    private static final String QUERY_FETCH_SIZE_FOR_FILTER = "SELECT COUNT(`" + WordTable.ID + "`) FROM `" + WordTable.TABLE + "` WHERE `" + WordTable.WORD + "` LIKE ?;";
+    private static final String QUERY_GET_WORD = "SELECT * FROM `" + WordTable.TABLE + "` WHERE `" + WordTable.ID + "` = ? LIMIT 1;";
+    private static final String QUERY_CREATE_WORD = "INSERT INTO `" + WordTable.TABLE + "` (`" + WordTable.WORD + "`, `" + WordTable.EXPLANATION + "`) VALUES (?, ?);";
+    private static final String QUERY_DELETE_WORD = "DELETE FROM `" + WordTable.TABLE + "` WHERE `" + WordTable.ID + "` = ? LIMIT 1;";
+    private static final String QUERY_UPDATE_WORD = "UPDATE `" + WordTable.TABLE + "` SET `" + WordTable.WORD + "` = ?, `" + WordTable.EXPLANATION + "` = ? WHERE `" + WordTable.ID + "` = ? LIMIT 1;";
 
     private WordMapper wordMapper;
     private WordListMapper wordListMapper;
